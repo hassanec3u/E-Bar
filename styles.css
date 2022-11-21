@@ -1,0 +1,19 @@
+body {
+    margin: 0 auto;
+    width: 800px;
+}
+
+#liste-recettes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 8px;
+}
+
+.recette {
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+img {
+    width: 100%;
+}
