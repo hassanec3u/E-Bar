@@ -16,46 +16,43 @@
         include "Donnees.inc.php";
         include "util.php";
 
-        $page_actuelle = basename($_SERVER["REQUEST_URI"]);
-        $page_actuelle = urldecode($page_actuelle);
-  
-        $routes = explode("/", $_SERVER["REQUEST_URI"]);
+        $url = $_SERVER["REQUEST_URI"];
+        $url = urldecode($url); // permet d'éviter d'avoir des %20 a la place des ' ', etc...  
+        $routes = explode("/", $url);
+        array_splice($routes, 0, 2); // supprime les deux premiers élément du tableau : "https://localhost:8080" et "hierarchie.php".
 
-        foreach($routes as $i => $route) {
-            if ($route != basename(__FILE__) && $route != "") {
-                $n = count($routes) - $i - 2;
-                $href = "";
-
-                for ($x = 0; $x < $n; $x++) {
-                    $href .= "../";
-                }
-                
-                echo "<a href=\"$href\">" . urldecode($route) . "</a> / ";
-            }
+        if (count($routes) == 0 || count($routes) == 1) { 
+            $filename = basename(__FILE__);
+            header("Location: http://{$_SERVER['HTTP_HOST']}/{$filename}/Aliment/");
         }
 
-        // if (isset($_GET["aliment"])) $aliment_utilisateur = $_GET["aliment"]; 
-        if ($page_actuelle != basename(__FILE__)) $aliment_utilisateur = $page_actuelle; 
-        // si le paramètre "aliment" est spécifié dans l'url, on attribut sa valeur a la variable "$aliment_utilisateur"
+        if ($routes[count($routes) - 1] == "") { 
+            array_splice($routes, count($routes) - 1, 1); 
+        }
 
-        $aliment = "Aliment"; // l'aliment par défaut est la racine
-        $super_categorie = null;
-        $sous_categorie = $Hierarchie["Aliment"]["sous-categorie"]; // la sous catégorie par défaut est la sous catégorie de la racine
+        // affichage du parcours de l'utilisateur à travers les différents aliments
+        foreach($routes as $i => $route) {
+            $n = count($routes) - $i - 1;
+            $href = "";
 
-        $aliment_existe = false;
-        if (isset($aliment_utilisateur)) {
-            // dans le cas ou la variable aliment_utilisateur on définie, on vérifie si l'aliment existe dans la hiérarchie
-            foreach($Hierarchie as $nom_aliment => $categories) {
-                if ($aliment_utilisateur == $nom_aliment) {
-                    $aliment = $nom_aliment;
-                    $aliment_existe = true;
-                    $super_categorie = $categories["super-categorie"];
-                    $sous_categorie = $categories["sous-categorie"];
-                }
+            for ($x = 0; $x < $n; $x++) {
+                $href .= "../";
             }
-        } else {
-            // si la  variable n'est pas définie, on prend la racine comme aliment
-            $aliment_existe = true; 
+            
+            echo "<a href=\"$href\">" . urldecode($route) . "</a> / ";
+        }
+
+        $aliment = $routes[count($routes) - 1];
+        $super_categorie = null;
+        $sous_categorie = null;
+        $aliment_existe = false;
+        // dans le cas ou la variable aliment_utilisateur on définie, on vérifie si l'aliment existe dans la hiérarchie
+        foreach($Hierarchie as $nom_aliment => $categories) {
+            if ($aliment == $nom_aliment) {
+                $super_categorie = $categories["super-categorie"];
+                $sous_categorie = $categories["sous-categorie"];
+                $aliment_existe = true;
+            }
         }
         ?>
 
@@ -72,7 +69,7 @@
                 <p>super categorie</p>
 
                 <?php foreach($super_categorie as $identifiant => $nom_aliment) { ?>
-                    <li><a href="<?php echo "../../$nom_aliment/"; ?>"><?php echo $nom_aliment; ?></a></li>
+                    <li><a href="<?php echo "../"; ?>"><?php echo $nom_aliment; ?></a></li>
                 <?php } ?>
             <?php } ?>
                 
@@ -80,7 +77,8 @@
                 <p>sous categorie</p>
 
                 <?php foreach($sous_categorie as $identifiant => $nom_aliment) { ?>
-                    <li><a href="<?php echo "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . $nom_aliment . "/"; ?>"><?php echo $nom_aliment; ?></a></li>
+                    <?php $website = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>
+                    <li><a href="<?php echo $website . $nom_aliment . "/"; ?>"><?php echo $nom_aliment; ?></a></li>
                 <?php } ?>
             <?php } ?>
             </ul>
