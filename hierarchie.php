@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,9 +20,11 @@
         $routes = explode("/", $url);
         array_splice($routes, 0, 2); // supprime les deux premiers élément du tableau : "https://localhost:8080" et "hierarchie.php".
 
+        $filename = basename(__FILE__);
         if (count($routes) == 0 || count($routes) == 1) { 
-            $filename = basename(__FILE__);
-            header("Location: http://{$_SERVER['HTTP_HOST']}/{$filename}/Aliment/");
+            header("Location: http://{$_SERVER['HTTP_HOST']}/{$filename}/Aliment/"); // redirection vers accueil hierarchie
+        } else if (count($routes) > 1 && $routes[count($routes) - 1] != "") {
+            header("Location: http://{$_SERVER['HTTP_HOST']}{$url}/"); // ajout du '/' manquant
         }
 
         if ($routes[count($routes) - 1] == "") { 
