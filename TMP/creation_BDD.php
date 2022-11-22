@@ -21,12 +21,12 @@ $Sql = "
 		CREATE DATABASE $nom_de_la_base;
 		
 		USE $nom_de_la_base;
-		CREATE TABLE UTILISATEUR (
+		CREATE TABLE Utilisateur (
 		
-		id INT AUTO_INCREMENT PRIMARY KEY,
+		id INT AUTO_INCREMENT PRIMARY KEY NOT NULL ,
 		login VARCHAR(255) UNIQUE NOT NULL,
 		mot_de_passe varchar(25) NOT NULL,
-		nom varchar(25) NOT NULL,
+		nom varchar(25) ,
 		prenom varchar(25),
 		sexe varchar(1),	
 		mail varchar(30),
