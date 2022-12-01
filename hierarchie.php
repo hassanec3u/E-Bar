@@ -15,21 +15,30 @@
         include "Donnees.inc.php";
         include "util.php";
 
+        $filename = basename(__FILE__);
         $url = $_SERVER["REQUEST_URI"];
         $url = urldecode($url); // permet d'éviter d'avoir des %20 a la place des ' ', etc...  
         $routes = explode("/", $url);
-        array_splice($routes, 0, 2); // supprime les deux premiers élément du tableau : "https://localhost:8080" et "hierarchie.php".
 
-        $filename = basename(__FILE__);
-        if (count($routes) == 0 || count($routes) == 1) { 
-            header("Location: http://{$_SERVER['HTTP_HOST']}/{$filename}/Aliment/"); // redirection vers accueil hierarchie
-        } else if (count($routes) > 1 && $routes[count($routes) - 1] != "") {
+        if (count($routes) > 1 && $routes[count($routes) - 1] != "") {
             header("Location: http://{$_SERVER['HTTP_HOST']}{$url}/"); // ajout du '/' manquant
-        }
+        } 
 
         if ($routes[count($routes) - 1] == "") { 
             array_splice($routes, count($routes) - 1, 1); 
+
+            if ($routes[count($routes) - 1] == $filename) { 
+                header("Location: http://{$_SERVER['HTTP_HOST']}{$url}Aliment/");
+            }
+        } else if ($routes[count($routes) - 1] == $filename) { 
+            header("Location: http://{$_SERVER['HTTP_HOST']}{$url}/Aliment/");
         }
+
+        while ($routes[0] != $filename) {
+            array_splice($routes, 0, 1);
+        }
+
+        array_splice($routes, 0, 1);
 
         // affichage du parcours de l'utilisateur à travers les différents aliments
         foreach($routes as $i => $route) {
