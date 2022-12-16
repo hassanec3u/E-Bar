@@ -16,4 +16,13 @@ body {
 
 img {
     width: 100%;
+    background: #eee;
+}
+
+.popup {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    padding: 16px;
+    background: green;
 }

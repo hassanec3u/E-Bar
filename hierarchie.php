@@ -7,13 +7,16 @@
     </head>
 
     <body>
+
         <header>
             <h1>Accès hiérarchique aux recettes à partir de la hiérarchie des aliments</h1>
         </header>
 
+
         <?php
         include "Donnees.inc.php";
         include "util.php";
+        include "panier.php";  
 
         $filename = basename(__FILE__);
         $url = $_SERVER["REQUEST_URI"];
@@ -105,6 +108,7 @@
                         <img src="<?php echo "http://" . $_SERVER["HTTP_HOST"] . "/Photos/" . str_replace(" ", "_", $recette["titre"]) . ".jpg"; ?>">
                         <p>Ingredients : <?php echo $recette["ingredients"]; ?>
                         <p>Preparation : <?php echo $recette["preparation"]; ?>
+                        <p><a href="">Ajouter au panier</a></p>    
                     </div>
                 <?php } ?>
               
@@ -115,6 +119,35 @@
         <footer>
 
         </footer>
+
+        <div class="popup"></div>
+
+
+
+        <script>
+            const request = new XMLHttpRequest();
+
+
+            function ajouterArticlePanier(event) {
+                event.preventDefault();
+                let titre = event.target.parentNode.parentNode.querySelector("h2");
+                console.log(event);
+                request.open("get", `/panier.php?article="${titre.innerHTML}"`);
+                request.send();
+
+
+
+                setTimeout(() => {
+                    console.log("a");
+                }, 5000);
+            }
+
+            let boutonAjoutPanier = document.querySelectorAll(".recette a");
+
+            for (i = 0; i < boutonAjoutPanier.length; i++) {
+                boutonAjoutPanier[i].addEventListener("click", ajouterArticlePanier);
+            }
+        </script>
     </body>
 </html>
 
