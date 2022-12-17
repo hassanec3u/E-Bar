@@ -21,10 +21,10 @@ $Sql = "
 		CREATE DATABASE $nom_de_la_base;
 		
 		USE $nom_de_la_base;
-		CREATE TABLE Utilisateur (
 		
-		id INT AUTO_INCREMENT PRIMARY KEY NOT NULL ,
-		login VARCHAR(255) UNIQUE NOT NULL,
+		CREATE TABLE Client (
+		id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+		login VARCHAR(25) UNIQUE NOT NULL,
 		mot_de_passe varchar(25) NOT NULL,
 		nom varchar(25) ,
 		prenom varchar(25),
@@ -33,7 +33,17 @@ $Sql = "
 		adresse varchar(50),
 		code_postale varchar(5),
 		ville varchar(25),
-		numero_tel varchar(10))";
+		numero_tel varchar(10));
+
+    CREATE TABLE Recette (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    titreR varchar(25));
+    
+    CREATE TABLE RecetteClient (
+    idClient INT PRIMARY KEY,
+    idRecette int ,
+    FOREIGN KEY (idClient) REFERENCES Recette(id) ON DELETE CASCADE,
+    FOREIGN KEY (idRecette) REFERENCES Client(id) ON DELETE CASCADE) ";
 
 foreach (explode(';', $Sql) as $Requete) {
     requete($mysqli, $Requete);
