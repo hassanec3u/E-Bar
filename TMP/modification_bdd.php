@@ -14,43 +14,50 @@ function requete($link, $requete)
     }
 }
 
-//permet de recuper les info d'un utilisateur
-function recupererInformation($login,$mdp){
-    global $mysqli;
-
-    $sql= "SELECT * 
-    FROM UTILISATEUR
-    WHERE login = '$login' AND mot_de_passe = '$mdp'";
-
-    requete($mysqli, $sql);
-}
-
-//permet d'incrire un nouveau utilisateur
-function inscrire($login, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel)
+//permet de recuper les info d'un Client
+function recupererDonnesClient($login, $mdp)
 {
     global $mysqli;
-    $sql = "INSERT INTO UTILISATEUR VALUES (NULL,'$login','$mot_de_passe','$nom','$prenom','$sexe','$mail','$adresse','$code_postale','$ville','$numero_tel')";
-    requete($mysqli, $sql);
+    //preparation de la requettee
+    $stat = mysqli_prepare($mysqli,"SELECT * 
+    FROM Client
+    WHERE login = ? AND mot_de_passe = ?");
+    mysqli_stmt_bind_param($stat, "ss", $login, $mdp);
+    mysqli_stmt_execute($stat);
+    //recupeation de la requete
+    mysqli_stmt_bind_result($stat, $r1,$r2,$r3,$r4,$r5,$r6,$r7,$r8,$r9,$r10,$r11);
+    mysqli_stmt_fetch($stat);
+
+    //renvoie le resultat sous forme de table
+    return array($r1,$r2,$r3,$r4,$r5,$r6,$r7,$r8,$r9,$r10,$r11);
+}
+
+//permet d'incrire un nouveau Client
+function ajouterClient($login, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel)
+{
+    global $mysqli;
+    $stat = mysqli_prepare($mysqli, "INSERT INTO Client VALUES (NULL,?,?,?,?,?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($stat, "ssssssssss", $login, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel);
+    mysqli_stmt_execute($stat);
 }
 
 //mise a jour des donnés personnelles
-function mettreAjourDonnees($login, $mdp, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel)
+function mettreAJourDonnesClient($login, $mdp, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel)
 {
     global $mysqli;
-    $sql = "UPDATE UTILISATEUR
-SET nom = '$nom', prenom = '$prenom', sexe = '$sexe' ,mail = '$mail' ,adresse = '$adresse' ,code_postale = '$code_postale' ,ville = '$ville',numero_tel = '$numero_tel'
-WHERE login = '$login' AND mot_de_passe = '$mdp'";
-
-    requete($mysqli, $sql);
-
+    $stat = mysqli_prepare($mysqli, "UPDATE Client
+SET nom =? , prenom = ?, sexe = ? ,mail = ? ,adresse = ? ,code_postale = ? ,ville = ? ,numero_tel = ?
+WHERE login = ? AND mot_de_passe = ? ");
+    mysqli_stmt_bind_param($stat, "ssssssssss", $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $login, $mdp);
+    mysqli_stmt_execute($stat);
 }
 
-inscrire("abouKore", "abcdef", "Kore", "Aboubacar", "H", "xxx@gmail.com", "rue bazin", "54000", "nancy", "455555550");
-$res = recupererInformation('abouKore','abcdef');
+//ajouterClient("abouKore", "abcdef", "Kore", "Aboubacar", "H", "xxx@gmail.com", "rue bazin", "54000", "nancy", "455555550");
+//mettreAJourDonnesClient("bouKore", "abcdef", "tata", "almou", "h", "ras", "ras", "ras", "ras", "ras");
 
-//mettreAjourDonnees('$login', 'abcdef', "Kore2", "Aboubacar2", "H", "sdfs", "sdf", "sfd", "df", "dfsq");
+//$test = recupererDonnesClient("abouKore","abcdef");
+//$res = recupererInformation('abouKore','abcdef');
 
 
 mysqli_close($mysqli);
 
-?>
