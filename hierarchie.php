@@ -10,12 +10,15 @@
 
         <header>
             <h1>Accès hiérarchique aux recettes à partir de la hiérarchie des aliments</h1>
+
+            <a href="/panier.php">Panier</a>
         </header>
 
 
         <?php
         include "Donnees.inc.php";
         include "util.php";
+
         include "panier.php";  
 
         $filename = basename(__FILE__);
@@ -125,27 +128,37 @@
 
 
         <script>
-            const request = new XMLHttpRequest();
-
-
             function ajouterArticlePanier(event) {
                 event.preventDefault();
                 let titre = event.target.parentNode.parentNode.querySelector("h2");
                 console.log(event);
-                request.open("get", `/panier.php?article="${titre.innerHTML}"`);
-                request.send();
 
-
-
-                setTimeout(() => {
-                    console.log("a");
-                }, 5000);
+                fetch(`/panier.php?article=${titre.innerHTML}`, {
+                    method: "GET",
+                });
+                
+                console.log("request sent!");
+             
             }
 
             let boutonAjoutPanier = document.querySelectorAll(".recette a");
+            let supprimer = document.querySelectorAll(".supprimer");
 
             for (i = 0; i < boutonAjoutPanier.length; i++) {
                 boutonAjoutPanier[i].addEventListener("click", ajouterArticlePanier);
+            }
+
+            for (i = 0; i < supprimer.length; i++) {
+                supprimer[i].addEventListener("click", (e) => {
+                    let aliment = e.target.parentNode.querySelector(".aliment").innerHTML;
+
+                    fetch(`/panier.php?supprimer=${aliment}`, {
+                        method: "GET",
+                    });
+
+                    console.log("suppression", aliment);
+                    console.log(`/panier.php?supprimer=${aliment}`)
+                });
             }
         </script>
     </body>
