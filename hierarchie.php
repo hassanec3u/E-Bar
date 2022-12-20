@@ -19,8 +19,6 @@
         include "Donnees.inc.php";
         include "util.php";
 
-        include "panier.php";  
-
         $filename = basename(__FILE__);
         $url = $_SERVER["REQUEST_URI"];
         $url = urldecode($url); // permet d'éviter d'avoir des %20 a la place des ' ', etc...  
@@ -142,23 +140,9 @@
             }
 
             let boutonAjoutPanier = document.querySelectorAll(".recette a");
-            let supprimer = document.querySelectorAll(".supprimer");
 
             for (i = 0; i < boutonAjoutPanier.length; i++) {
                 boutonAjoutPanier[i].addEventListener("click", ajouterArticlePanier);
-            }
-
-            for (i = 0; i < supprimer.length; i++) {
-                supprimer[i].addEventListener("click", (e) => {
-                    let aliment = e.target.parentNode.querySelector(".aliment").innerHTML;
-
-                    fetch(`/panier.php?supprimer=${aliment}`, {
-                        method: "GET",
-                    });
-
-                    console.log("suppression", aliment);
-                    console.log(`/panier.php?supprimer=${aliment}`)
-                });
             }
         </script>
     </body>
