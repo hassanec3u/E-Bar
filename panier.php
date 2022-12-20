@@ -1,3 +1,5 @@
+<h1>Votre panier</h1>
+
 <?php
 
 if (!isset($_COOKIE["panier"])) { 
@@ -17,11 +19,16 @@ if (!isset($_COOKIE["panier"])) {
         setcookie("panier", json_encode($panier));
     } else {
         // affichage du contenu du panier
-        echo "<ul>";
-        foreach($panier as $aliment) {
-            echo "<li><span class=\"aliment\">" . $aliment . "</span> <span class=\"supprimer\">❌</span></li>";
+
+        if (count($panier) == 0) {
+            echo "<p>Votre panier est vide !</p>";
+        } else {
+            echo "<ul>";
+            foreach($panier as $aliment) {
+                echo "<li><span class=\"aliment\">" . $aliment . "</span> <span class=\"supprimer\">❌</span></li>";
+            }
+            echo "</ul>";
         }
-        echo "</ul>";
     }
 }
 
