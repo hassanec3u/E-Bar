@@ -7,13 +7,11 @@
     </head>
 
     <body>
-
         <header>
             <h1>Accès hiérarchique aux recettes à partir de la hiérarchie des aliments</h1>
 
             <a href="/panier.php">Panier</a>
         </header>
-
 
         <?php
         include "Donnees.inc.php";

@@ -29,7 +29,7 @@ $Sql = "
 		nom varchar(25) ,
 		prenom varchar(25),
 		sexe varchar(1),	
-		mail varchar(30),
+		mail varchar(255) UNIQUE,
 		adresse varchar(50),
 		code_postale varchar(5),
 		ville varchar(25),
