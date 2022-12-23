@@ -1,0 +1,20 @@
+.header{
+    background-color: black;
+}
+
+.nav_enTete{
+    margin-right: 5%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_information{
+    font-family: 'Kanit', sans-serif;
+
+}
+.header_information_item{
+    margin-left: 40px;
+    color: white;
+    text-decoration: none;
+}
