@@ -79,7 +79,7 @@
                 
             <?php if ($super_categorie != null) { // on affiche les super catégories seulement si l'aliment n'est pas la racine ?>
                 <p>super categorie</p>
-
+                flatpak install flathub io.dbeaver.DBeaverCommunity
                 <?php foreach($super_categorie as $identifiant => $nom_aliment) { ?>
                     <li><a href="<?php echo "../"; ?>"><?php echo $nom_aliment; ?></a></li>
                 <?php } ?>
