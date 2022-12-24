@@ -51,35 +51,35 @@ if (isset($submit)) {
         $erreurs["mot_de_passe_vide"] = "Le champ mot de passe est videou plus long que 32 caractères.";
     }
 
-    if (strlen($nom) == 0 || strlen($nom) >= 32) {
+    if (strlen($nom) >= 32) {
         $erreurs["nom"] = "Le champ nom est vide ou plus long que 32 caractères.";
     }
 
-    if (strlen($prenom) == 0 || strlen($prenom) >= 32) {
+    if (strlen($prenom) >= 32) {
         $erreurs["prenom"] = "Le champ prenom est vide ou plus long que 32 caractères.";
     }
 
-    if (strlen($sexe) == 0 || strlen($sexe) >= 2) {
+    if (strlen($sexe) >= 2) {
         $erreurs["sexe"] = "Le champ sexe est vide ou plus long que 1 caractère.";
     }
 
-    if (strlen($mail) == 0 || strlen($mail) >= 255) {
-        $erreurs["mail"] = "Le champ mail est videou plus long que 255 caractères.";
+    if (strlen($mail) >= 255) {
+        $erreurs["mail"] = "Le champ mail est vide ou plus long que 255 caractères.";
     }
 
-    if (strlen($adresse) == 0 || strlen($adresse) >= 32) {
+    if (strlen($adresse) >= 32) {
         $erreurs["adresse"] = "Le champ adresse est vide ou plus long que 32 caractères.";
     }
 
-    if (strlen($code_postal) == 0 || strlen($code_postal) >= 32) {
+    if (strlen($code_postal) >= 32) {
         $erreurs["code_postal"] = "Le champ code_postal est vide ou plus long que 32 caractères.";
     }
 
-    if (strlen($ville) == 0 || strlen($ville) >= 32) {
+    if (strlen($ville) >= 32) {
         $erreurs["ville"] = "Le champ ville est vide ou plus long que 32 caractères.";
     }
 
-    if (strlen($numero_tel) == 0 || strlen($numero_tel) >= 10) {
+    if (strlen($numero_tel) >= 10) {
         $erreurs["numero_tel"] = "Le champ numero_tel est vide ou plus long que 10 caractères.";
     }
 
@@ -105,6 +105,7 @@ mysqli_close($mysqli);
                 type="text"
                 name="nom_utilisateur"
                 value="<?php echo $nom_utilisateur; ?>"
+                required>
     </label>
 
     <label>
@@ -112,7 +113,8 @@ mysqli_close($mysqli);
         <input
                 type="password"
                 name="mot_de_passe"
-                value="<?php echo $mot_de_passe; ?>">
+                value="<?php echo $mot_de_passe; ?>"
+                required>
     </label>
 
     <label>
