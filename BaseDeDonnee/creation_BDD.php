@@ -13,7 +13,6 @@ function requete($link, $requete)
         return ($resultat);
     }
 }
-//DROP DATABASE IF EXISTS $nom_de_la_base;
 
 //creation de la base Utilisateur;
 $nom_de_la_base = "Utilisateurs";
