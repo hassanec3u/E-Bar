@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+//contien le lien ou on sera rediriger en cas de click sur "mon profil"
+$lienRedirection = '';
+
+if(isset($_SESSION["estConnecte"]) ){
+    $lienRedirection="profil.php";
+}else{
+    $lienRedirection="authentification.php";
+}
+?>
+
 <!DOCTYPE HTML>
 <html lang="fr">
 
@@ -11,7 +24,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/1eeeff3f3f.js" crossorigin="anonymous"></script>
-
+<script>
+function redirection(){
+    document.getElementById("lienCompte").href =<?php echo json_encode($lienRedirection )?>
+}
+</script>
 </head>
 
 <header class="header">
@@ -22,7 +39,7 @@
         </div>
         <div class="header_information">
             <a href="acceil.php" class="header_information_item"><i class="fa-solid fa-magnifying-glass"></i> Rechercher</a>
-            <a href="inscription.php" class="header_information_item"><i class="fa-solid fa-user"></i> Compte</a>
+            <a href="acceil.php" onclick=redirection() id="lienCompte" class="header_information_item"><i class="fa-solid fa-user"></i> Compte</a>
             <a href="panier.php" class="header_information_item"><i class="fa-solid fa-cart-shopping"></i> Panier</a>
         </div>
     </nav>

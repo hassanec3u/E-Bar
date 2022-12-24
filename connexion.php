@@ -33,7 +33,9 @@ if (isset($submit)) {
 
             if (!empty($result)) {
                 echo "Connexion réussie.";
-                $_SESSION["connected"] = $login;
+                $_SESSION["estConnecte"] = true;
+                $_SESSION["login"] = $login;
+                $_SESSION["mot_de_passe"] = $mot_de_passe;
             }
         }
     }
@@ -48,11 +50,13 @@ if (isset($submit)) {
 ?>
 
 <?php
-if (isset($_SESSION["connected"])) {
-    echo "<p>Connecté en temps que " . $_SESSION['connected'] . ". <a href='deconnexion.php'>Deconnexion</a></p>";
+if (isset($_SESSION["estConnecte"])) {
+    echo "<p>Connecté en temps que " . $_SESSION["login"] . ". <a href='deconnexion.php'>Deconnexion</a></p>";
 } else {
     echo "<p>Vous n'êtes pas connecté</p>";
 }
+mysqli_close($mysqli);
+
 ?>
 
 <form method="post" action="connexion.php">
