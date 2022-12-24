@@ -22,7 +22,7 @@
         </div>
         <div class="header_information">
             <a href="acceil.php" class="header_information_item"><i class="fa-solid fa-magnifying-glass"></i> Rechercher</a>
-            <a href="connexion.php" class="header_information_item"><i class="fa-solid fa-user"></i> Compte</a>
+            <a href="inscription.php" class="header_information_item"><i class="fa-solid fa-user"></i> Compte</a>
             <a href="panier.php" class="header_information_item"><i class="fa-solid fa-cart-shopping"></i> Panier</a>
         </div>
     </nav>
