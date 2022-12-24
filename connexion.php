@@ -8,17 +8,17 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
 
 include "util.php";
 
-$mail = "";
+$login = "";
 $mot_de_passe = "";
 //verifie si le formulaire a ete soumiss
 if (isset($_POST["submit"])) $submit = $_POST["submit"];
 
 if (isset($submit)) {
-    if (isset($_POST["mail"])) $mail = $_POST["mail"];
+    if (isset($_POST["login"])) $login = $_POST["login"];
     if (isset($_POST["mot_de_passe"])) $mot_de_passe = $_POST["mot_de_passe"];
 
-    if (strlen($mail) == 0 || strlen($mail) >= 255) {
-        $erreurs["mail"] = "Le champ mail est vide ou plus long que 255 caractères.";
+    if (strlen($login) == 0 || strlen($login) >= 25) {
+        $erreurs["login"] = "Le champ login est vide ou plus long que 25 caractères.";
     }
 
     if (strlen($mot_de_passe) == 0 || strlen($mot_de_passe) >= 32) {
@@ -26,14 +26,14 @@ if (isset($submit)) {
     }
 
     if (!isset($erreurs)) {
-        if (verifierSiMailExiste($mysqli, $mail)) {
+        if (verifierSiLoginExiste($mysqli, $login)) {
 
             //stocke les information du client dans un tableau
-            $result = recupererDonnesClient($mysqli, $mail, $mot_de_passe);
+            $result = recupererDonnesClienLogin($mysqli, $login, $mot_de_passe);
 
             if (!empty($result)) {
                 echo "Connexion réussie.";
-                $_SESSION["connected"] = $mail;
+                $_SESSION["connected"] = $login;
             }
         }
     }
@@ -57,11 +57,11 @@ if (isset($_SESSION["connected"])) {
 
 <form method="post" action="connexion.php">
     <label>
-        Mail :
+        Login :
         <input
-                type="email"
-                name="mail"
-                value="<?php echo $mail; ?>">
+                type="text"
+                name="login"
+                value="<?php echo $login; ?>">
     </label>
 
     <label>

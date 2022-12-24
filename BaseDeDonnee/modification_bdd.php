@@ -25,6 +25,29 @@ function recupererDonnesClient($connect, $mail, $mdp)
     }
 }
 
+function recupererDonnesClienLogin($connect, $login, $mdp)
+{
+    //preparation de la requettee
+    $stat = mysqli_prepare($connect, "SELECT * 
+    FROM Client
+    WHERE login = ? AND mot_de_passe = ?");
+    mysqli_stmt_bind_param($stat, "ss", $login, $mdp);
+    mysqli_stmt_execute($stat);
+
+    //verifie le mot de passe
+    mysqli_stmt_store_result($stat);
+    if (mysqli_stmt_num_rows($stat) == 0) {
+        echo("ERREUR :  Le mot de passe spécifié est incorrect");
+        return null;
+    } else {
+        //recupeation de la requete
+        mysqli_stmt_bind_result($stat, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11);
+        mysqli_stmt_fetch($stat);
+        return array("id" => $r1, "login" => $r2, "mot_de_passe" => $r3, "nom" => $r4,
+            "prenom" => $r5, "sexe" => $r6, "login" => $r7, "adresse" => $r8, "code_postale" => $r9, "ville" => $r10, "numero_tel" => $r11);
+    }
+}
+
 //renvoie le resultat sous forme de table
 
 
@@ -52,6 +75,22 @@ function verifierSiMailExiste($connect, $mail)
     mysqli_stmt_store_result($stat);
     if (mysqli_stmt_num_rows($stat) == 0) {
         echo("ERREUR : Il n'y a aucun utilisateur associé à l'adresse mail spécifiée");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function verifierSiLoginExiste($connect, $login)
+{
+    $stat = mysqli_prepare($connect, "SELECT * 
+    FROM Client
+    WHERE login = ?");
+    mysqli_stmt_bind_param($stat, "s", $login);
+    mysqli_stmt_execute($stat);
+    mysqli_stmt_store_result($stat);
+    if (mysqli_stmt_num_rows($stat) == 0) {
+        echo("ERREUR : Il n'y a aucun utilisateur associé au login spécifié");
         return false;
     } else {
         return true;
