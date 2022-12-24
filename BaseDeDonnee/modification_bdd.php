@@ -107,8 +107,17 @@ WHERE login = ? AND mot_de_passe = ? ");
     mysqli_stmt_execute($stat);
 }
 
+function ajouterRecette($connect, $id, $titreR) {
+    $stmt = mysqli_prepare($connect, "insert into Recette (titreR) values (?)");
+    $stmt->bind_param("s", $titreR);
+    $stmt->execute();
+}
 
-
+function ajouterRecetteClient($connect, $idRecette, $idclient) {
+    $stmt = mysqli_prepare($connect, "insert into RecetteClient (idClient, idRecette) values (1, 1)");
+    // $stmt->bind_param("ss", $idClient, $recette);
+    $stmt->execute();
+}
 
 
 
