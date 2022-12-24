@@ -44,19 +44,19 @@ if (isset($submit)) {
 
     // test longueur des champs du formulaire
     if (strlen($nom_utilisateur) == 0 || strlen($nom_utilisateur) >= 32) {
-        $erreurs["nom_utilisateur_vide"] = "Le champ nom d'utilisateur est vide ou plus long que 32 caractères.";
+        $erreurs["nom_utilisateur_vide"] = "Le champ nom d'utilisateur est vide ou plus long que 25 caractères.";
     }
 
     if (strlen($mot_de_passe) == 0 || strlen($mot_de_passe) >= 32) {
-        $erreurs["mot_de_passe_vide"] = "Le champ mot de passe est videou plus long que 32 caractères.";
+        $erreurs["mot_de_passe_vide"] = "Le champ mot de passe est videou plus long que 25 caractères.";
     }
 
     if (strlen($nom) >= 32) {
-        $erreurs["nom"] = "Le champ nom est vide ou plus long que 32 caractères.";
+        $erreurs["nom"] = "Le champ nom est plus long que 25 caractères.";
     }
 
     if (strlen($prenom) >= 32) {
-        $erreurs["prenom"] = "Le champ prenom est vide ou plus long que 32 caractères.";
+        $erreurs["prenom"] = "Le champ prenom est plus long que 25 caractères.";
     }
 
     if (strlen($sexe) >= 2) {
@@ -64,19 +64,19 @@ if (isset($submit)) {
     }
 
     if (strlen($mail) >= 255) {
-        $erreurs["mail"] = "Le champ mail est vide ou plus long que 255 caractères.";
+        $erreurs["mail"] = "Le champ mail est vide ou plus long que 64 caractères.";
     }
 
     if (strlen($adresse) >= 32) {
-        $erreurs["adresse"] = "Le champ adresse est vide ou plus long que 32 caractères.";
+        $erreurs["adresse"] = "Le champ adresse est plus long que 50 caractères.";
     }
 
     if (strlen($code_postal) >= 32) {
-        $erreurs["code_postal"] = "Le champ code_postal est vide ou plus long que 32 caractères.";
+        $erreurs["code_postal"] = "Le champ code_postal est vide ou plus long que 5 caractères.";
     }
 
     if (strlen($ville) >= 32) {
-        $erreurs["ville"] = "Le champ ville est vide ou plus long que 32 caractères.";
+        $erreurs["ville"] = "Le champ ville est vide ou plus long que 25 caractères.";
     }
 
     if (strlen($numero_tel) >= 10) {
