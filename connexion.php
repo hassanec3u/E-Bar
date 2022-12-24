@@ -29,7 +29,7 @@ if (isset($submit)) {
         if (verifierSiLoginExiste($mysqli, $login)) {
 
             //stocke les information du client dans un tableau
-            $result = recupererDonnesClienLogin($mysqli, $login, $mot_de_passe);
+            $result = recupererDonnesClient($mysqli, $login, $mot_de_passe);
 
             if (!empty($result)) {
                 echo "Connexion réussie.";
