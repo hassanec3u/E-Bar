@@ -3,9 +3,9 @@
     <head>
         <title></title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="/projet_web/css/header.css">
-        <link rel="stylesheet" href="/projet_web/css/footer.css">
-        <link rel="stylesheet" href="/projet_web/css/base.css">
+        <link rel="stylesheet" href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../css/header.css">
+        <link rel="stylesheet" href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../css/footer.css">
+        <link rel="stylesheet" href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../css/base.css">
     </head>
 
     <body>
@@ -115,9 +115,6 @@
         </div>
 
         <?php include_once "footer.php"; ?>
-
-
-        
 
         <script>
             let recettes = <?php echo json_encode($Recettes); ?>;

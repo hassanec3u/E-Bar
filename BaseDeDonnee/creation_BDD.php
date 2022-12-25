@@ -43,7 +43,7 @@ $Sql = "
         CREATE TABLE IF NOT EXISTS RecetteClient (
         idClient INT REFERENCES Client(id) ON DELETE CASCADE,
         idRecette int REFERENCES Recette(id) ON DELETE CASCADE,
-        PRIMARY KEY (idClient, idRecette));";
+        PRIMARY KEY (idClient, idRecette))";
 
 foreach (explode(';', $Sql) as $Requete) {
     requete($mysqli, $Requete);

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/base.css">
-        <?php // include_once "util/iconLien.php"; ?>
+        <?php include_once "util/iconLien.php"; ?>
     </head>
 
     <body>
