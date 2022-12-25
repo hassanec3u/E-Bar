@@ -29,8 +29,13 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
 
     //on met a jour les nouvelles informations du client dans la bdd
     if (isset($_POST["mettreAjour"])) {
-        mettreAJourDonnesClient($mysqli, $_POST["nom_utilisateur"], $_POST["mot_de_passe"], $_POST["nom"], $_POST["prenom"]
-            , $_POST["sexe"], $_POST["mail"], $_POST["adresse"], $_POST["code_postal"], $_POST["ville"], $_POST["numero_tel"]);
+        if(mettreAJourDonnesClient($mysqli, $_POST["nom_utilisateur"], $_POST["mot_de_passe"], $_POST["nom"], $_POST["prenom"]
+            , $_POST["sexe"], $_POST["mail"], $_POST["adresse"], $_POST["code_postal"], $_POST["ville"], $_POST["numero_tel"])){
+            echo "Mise A jour reussi";
+        }else{
+            echo "Mise A jour echoué";
+
+        }
     }
 
     //on les recuperes pour pouvoir les afficher plus tard

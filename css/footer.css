@@ -6,15 +6,16 @@ footer {
 }
 
 .footer_information {
-    font-size: 0.7em;
     font-family: 'Kanit', sans-serif;
     color: white;
-}
 
+}
 ul{
     list-style: none;
 }
 .footer_information_item{
+
+    font-size: 0.6em;
     color: white;
     text-decoration: none;
 }

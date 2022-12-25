@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 function recupererDonnesClient($connect, $login, $mdp)
 {
     //preparation de la requettee
@@ -33,9 +30,10 @@ function ajouterClient($connect, $login, $mot_de_passe, $nom, $prenom, $sexe, $m
     $aReussi = mysqli_stmt_execute($stat);
 
     if (!$aReussi) {
-        echo("Impossible d'ajouter un client: " . mysqli_error($connect));
+        return false;
+    }else{
+        return true;
     }
-
 }
 
 
@@ -61,10 +59,9 @@ function mettreAJourDonnesClient($connect, $login, $mdp, $nom, $prenom, $sexe, $
 SET nom =? , prenom = ?, sexe = ? ,mail = ? ,adresse = ? ,code_postale = ? ,ville = ? ,numero_tel = ?
 WHERE login = ? AND mot_de_passe = ? ");
     mysqli_stmt_bind_param($stat, "ssssssssss", $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $login, $mdp);
-    $aReussi = mysqli_stmt_execute($stat);
-
-    if (!$aReussi) {
-        echo("Impossible de mettre a jour les information du client: " . mysqli_error($connect));
+    mysqli_stmt_execute($stat);
+    if (mysqli_affected_rows($connect) >0 ) {
+        return true;
     }
 }
 
@@ -107,10 +104,8 @@ function recupererPanier($connect, $idClient) {
     
 
     return $res;
+    return false;
 }
-
-
-
 //ajouterClient("abouKore", "abcdef", "Kore", "Aboubacar", "H", "xxx@gmail.com", "rue bazin", "54000", "nancy", "455555550");
 //mettreAJourDonnesClient("bouKore", "abcdef", "tata", "almou", "h", "ras", "ras", "ras", "ras", "ras");
 
