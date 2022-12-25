@@ -103,7 +103,7 @@
                 <?php if ($ingredient == $aliment) { ?> 
                     <div class="recette">
                         <h2><?php echo $recette["titre"]; ?></h2>
-                        <img src="<?php echo "http://" . $_SERVER["HTTP_HOST"] . "/Photos/" . str_replace(" ", "_", $recette["titre"]) . ".jpg"; ?>" alt="photo recette">
+                        <img src="<?php echo $_SERVER["SCRIPT_NAME"] . "/../Photos/" . str_replace(" ", "_", $recette["titre"]) . ".jpg"; ?>" alt="photo recette">
                         <p>Ingredients : <?php echo $recette["ingredients"]; ?>
                         <p>Preparation : <?php echo $recette["preparation"]; ?>
                         <p><a href="">Ajouter au panier</a></p>    
