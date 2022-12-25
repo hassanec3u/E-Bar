@@ -3,10 +3,15 @@
     <head>
         <title>Panier</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="<?php echo "http://" . $_SERVER["HTTP_HOST"]; ?>/styles.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/base.css">
+        <?php // include_once "util/iconLien.php"; ?>
     </head>
 
     <body>
+        <?php include_once "header.php"; ?>
+
         <h1>Votre panier</h1>
 
         <?php
@@ -122,6 +127,9 @@
         }
 
         ?>
+
+        <?php include_once "footer.php"; ?>
+
 
         <script>
             let supprimer = document.querySelectorAll(".supprimer");

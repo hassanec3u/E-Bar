@@ -3,15 +3,15 @@
     <head>
         <title></title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="<?php echo "http://" . $_SERVER["HTTP_HOST"]; ?>/styles.css">
+        <link rel="stylesheet" href="/projet_web/css/header.css">
+        <link rel="stylesheet" href="/projet_web/css/footer.css">
+        <link rel="stylesheet" href="/projet_web/css/base.css">
     </head>
 
     <body>
-        <header>
-            <h1>Accès hiérarchique aux recettes à partir de la hiérarchie des aliments</h1>
+        
+        <?php include_once "header.php"; ?>
 
-            <a href="panier.php">Panier</a>
-        </header>
 
         <?php
         include "Donnees.inc.php";
@@ -114,11 +114,10 @@
         <?php } ?>
         </div>
 
-        <footer>
+        <?php include_once "footer.php"; ?>
 
-        </footer>
 
-        <div class="popup"></div>
+        
 
         <script>
             let recettes = <?php echo json_encode($Recettes); ?>;
@@ -157,6 +156,8 @@
                 boutonAjoutPanier[i].addEventListener("click", ajouterArticlePanier);
             }
         </script>
+
+
     </body>
 </html>
 

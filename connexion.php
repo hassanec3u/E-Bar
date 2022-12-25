@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 //bloc php pour inclure les fonction neccesaire pour la bdd de bdd
@@ -70,6 +71,31 @@ if (isset($erreurs)) {
 
 if (isset($_SESSION["connected"])) {
     echo "Connexion réussie.";
+
+    // ajout synchronisation des cookies a la connexion
+    if (isset($_COOKIE["panier"])) {
+        $panier = json_decode($_COOKIE["panier"], true);
+
+        $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur de connexion");
+
+        try {
+            viderRecettesClient($mysqli, $_SESSION["connected"]["id"]);
+        } catch (Exception $e) {
+
+        }
+
+        foreach($panier as $id => $recette) {
+            try {
+                ajouterRecetteClient($mysqli, $_SESSION["connected"]["id"], ((int) ($id)) + 1);
+            } catch(Exception $e) {
+
+            }
+        }
+
+        $mysqli->close();
+    
+    }
+        
 
     echo "<p>Connecté en temps que " . $_SESSION['connected']['login'] . ". <a href='deconnexion.php'>Deconnexion</a></p>";
 } else {
