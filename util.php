@@ -4,6 +4,4 @@
         print_r($tableau);
         echo "</pre>";
     }
-
-    
 ?>

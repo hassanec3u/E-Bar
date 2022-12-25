@@ -80,24 +80,41 @@ if (isset($submit)) {
     }
 
     if (strlen($numero_tel) >= 10) {
-        $erreurs["numero_tel"] = "Le champ numero_tel est vide ou plus long que 10 caractères.";
+        $erreurs["ville"] = "Le champ numero_tel est vide ou plus long que 10 caractères.";
     }
 
     // test longueur
     if (!isset($erreurs)) {
         //ajout de client dans la bdd
-        ajouterClient($mysqli, $nom_utilisateur, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postal, $ville, $numero_tel);
+        if (!ajouterClient($mysqli, $nom_utilisateur, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postal, $ville, $numero_tel)) {
+            $erreurs["numero_tel"] = "Impossible d'ajouter un client: Login deja utilisé" ;
+        }
+
     }
 }
 
+mysqli_close($mysqli); ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Deconnection</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/base.css">
+    <?php include_once "util/iconLien.php"; ?>
+
+</head>
+<?php include_once "header.php"; ?>
+<body>
+<?php
 if (isset($erreurs)) {
     foreach ($erreurs as $erreur) {
         echo "<p class='erreur'>$erreur</p>";
     }
 }
-mysqli_close($mysqli);
 ?>
-
 <form method="post" action="inscription.php">
     <label>
         Nom utilisateur :
@@ -186,3 +203,11 @@ mysqli_close($mysqli);
             name="submit"
             value="submit">
 </form>
+
+</body>
+
+<?php include_once "footer.php"; ?>
+
+</html>
+
+

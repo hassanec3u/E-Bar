@@ -38,7 +38,6 @@ if (isset($submit)) {
             $erreurs["login_incorrect"] = "ERREUR : Il n'y a aucun utilisateur associé au login spécifié";
 
         }
-
     }
 }
 ?>
@@ -46,7 +45,6 @@ if (isset($submit)) {
 <?php
 mysqli_close($mysqli);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -59,11 +57,8 @@ mysqli_close($mysqli);
     <?php include_once "util/iconLien.php"; ?>
 
 </head>
-
 <?php include_once "header.php"; ?>
-
 <body>
-
 <?php
 
 //affichage des erreur
@@ -107,7 +102,7 @@ if (isset($_SESSION["connected"])) {
 </form>
 </body>
 
-<?php include "footer.php"; ?>
+<?php include_once "footer.php"; ?>
 
 </html>
 
