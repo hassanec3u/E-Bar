@@ -62,7 +62,7 @@ function mettreAJourDonnesClient($connect, $login, $mdp, $nom, $prenom, $sexe, $
     $stat = mysqli_prepare($connect, "UPDATE Client
 SET nom =? , prenom = ?, sexe = ? ,mail = ? ,adresse = ? ,code_postale = ? ,ville = ? ,numero_tel = ?
 WHERE login = ? AND mot_de_passe = ? ");
-    mysqli_stmt_bind_param($connect, "ssssssssss", $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $login, $mdp);
+    mysqli_stmt_bind_param($stat, "ssssssssss", $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $login, $mdp);
     $aReussi = mysqli_stmt_execute($stat);
 
     if (!$aReussi) {
