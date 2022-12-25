@@ -74,13 +74,40 @@ function ajouterRecette($connect, $id, $titreR) {
     $stmt->execute();
 }
 
-function ajouterRecetteClient($connect, $idRecette, $idclient) {
-    $stmt = mysqli_prepare($connect, "insert into RecetteClient (idClient, idRecette) values (1, 1)");
-    // $stmt->bind_param("ss", $idClient, $recette);
+function ajouterRecetteClient($connect, $idclient, $idRecette) {
+    $stmt = mysqli_prepare($connect, "insert into RecetteClient (idClient, idRecette) values (?, ?)");
+    $stmt->bind_param("ss", $idclient, $idRecette);
     $stmt->execute();
 }
 
+function viderRecettesClient($connect, $idClient) {
+    $stmt = mysqli_prepare($connect, "delete from RecetteClient where idClient = ?");
+    $stmt->bind_param("s", $idClient);
+    $stmt->execute();
 
+    echo "vide";
+}
+
+function recupererPanier($connect, $idClient) {
+    $stmt = mysqli_prepare($connect, "select * from RecetteClient rc, Recette r where rc.idClient = ? and rc.idRecette = r.id");
+    echo $idClient;
+    $stmt->bind_param("s", $idClient);
+    /* execute statement */
+    $stmt->execute();
+    $result = $stmt->get_result(); # all rows to array
+
+    $res = [];
+    $i = 0;
+
+    while ($data = $result->fetch_assoc())
+    {
+        $res[$i] = $data;
+        $i += 1;
+    }
+    
+
+    return $res;
+}
 
 
 

@@ -79,7 +79,6 @@
                 
             <?php if ($super_categorie != null) { // on affiche les super catégories seulement si l'aliment n'est pas la racine ?>
                 <p>super categorie</p>
-                flatpak install flathub io.dbeaver.DBeaverCommunity
                 <?php foreach($super_categorie as $identifiant => $nom_aliment) { ?>
                     <li><a href="<?php echo "../"; ?>"><?php echo $nom_aliment; ?></a></li>
                 <?php } ?>
@@ -121,20 +120,35 @@
 
         <div class="popup"></div>
 
+        <script>
+            let recettes = <?php echo json_encode($Recettes); ?>;
+        </script>
 
 
         <script>
             function ajouterArticlePanier(event) {
                 event.preventDefault();
                 let titre = event.target.parentNode.parentNode.querySelector("h2");
-                console.log(event);
 
-                fetch(`/panier.php?article=${titre.innerHTML}`, {
+                let recette = {
+                    id: 0,
+                    titre: "",
+                }
+
+                recettes.forEach((v, k) => {
+                    if (v.titre == titre.innerHTML) {
+                        recette.id = k;
+                        recette.titre = v.titre;
+                    }
+                });
+
+                console.log(`/<?php echo basename(__DIR__); ?>/panier.php?article=${recette.titre}&id=${recette.id}`);
+
+                fetch(`/<?php echo basename(__DIR__); ?>/panier.php?article=${recette.titre}&id=${recette.id}`, {
                     method: "GET",
                 });
                 
                 console.log("request sent!");
-             
             }
 
             let boutonAjoutPanier = document.querySelectorAll(".recette a");

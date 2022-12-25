@@ -31,11 +31,8 @@ if (isset($submit)) {
             $result = recupererDonnesClient($mysqli, $login, $mot_de_passe);
 
             if (!empty($result)) {
-                $_SESSION["estConnecte"] = true;
-                $_SESSION["login"] = $login;
-                $_SESSION["mot_de_passe"] = $mot_de_passe;
-            }else{
-              $erreurs["mot_de_passe_vide"] = "ERREUR :  Le mot de passe spécifié est incorrect";
+                // echo "Connexion réu ssie.";
+                $_SESSION["connected"] = $result;
             }
         } else {
             $erreurs["login_incorrect"] = "ERREUR : Il n'y a aucun utilisateur associé au login spécifié";
@@ -78,7 +75,8 @@ if (isset($erreurs)) {
 
 if (isset($_SESSION["estConnecte"])) {
     echo "Connexion réussie.";
-    echo "<p>Connecté en temps que " . $_SESSION["login"] . ". <a href='deconnexion.php'>Deconnexion</a></p>";
+
+    echo "<p>Connecté en temps que " . $_SESSION['connected']['login'] . ". <a href='deconnexion.php'>Deconnexion</a></p>";
 } else {
     echo "<p>Vous n'êtes pas connecté</p>";
 }

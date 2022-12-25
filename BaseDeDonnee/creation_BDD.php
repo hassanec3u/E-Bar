@@ -18,11 +18,11 @@ function requete($link, $requete)
 $nom_de_la_base = "Utilisateurs";
 $Sql = "
 		
-		CREATE DATABASE $nom_de_la_base;
+		CREATE DATABASE IF NOT EXISTS $nom_de_la_base;
 		
 		USE $nom_de_la_base;
 		
-		CREATE TABLE Client (
+		CREATE TABLE IF NOT EXISTS Client (
 		id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 		login VARCHAR(25) UNIQUE NOT NULL,
 		mot_de_passe varchar(25) NOT NULL,
@@ -35,15 +35,15 @@ $Sql = "
 		ville varchar(25),
 		numero_tel varchar(10));
 
-    CREATE TABLE Recette (
-    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    titreR varchar(25));
+        CREATE TABLE Recette (
+        id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+        titreR varchar(256));
+        
     
-    CREATE TABLE RecetteClient (
-    idClient INT PRIMARY KEY,
-    idRecette int ,
-    FOREIGN KEY (idClient) REFERENCES Recette(id) ON DELETE CASCADE,
-    FOREIGN KEY (idRecette) REFERENCES Client(id) ON DELETE CASCADE) ";
+        CREATE TABLE IF NOT EXISTS RecetteClient (
+        idClient INT REFERENCES Client(id) ON DELETE CASCADE,
+        idRecette int REFERENCES Recette(id) ON DELETE CASCADE,
+        PRIMARY KEY (idClient, idRecette));";
 
 foreach (explode(';', $Sql) as $Requete) {
     requete($mysqli, $Requete);
