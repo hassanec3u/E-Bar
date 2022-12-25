@@ -73,7 +73,7 @@ if (isset($erreurs)) {
     }
 }
 
-if (isset($_SESSION["estConnecte"])) {
+if (isset($_SESSION["connected"])) {
     echo "Connexion réussie.";
 
     echo "<p>Connecté en temps que " . $_SESSION['connected']['login'] . ". <a href='deconnexion.php'>Deconnexion</a></p>";
