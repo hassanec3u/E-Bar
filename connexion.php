@@ -5,7 +5,6 @@ session_start();
 include_once "BaseDeDonnee/modification_bdd.php";
 $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur de connexion");
 
-
 include "util.php";
 
 $login = "";
@@ -29,30 +28,61 @@ if (isset($submit)) {
         if (verifierSiLoginExiste($mysqli, $login)) {
 
             //stocke les information du client dans un tableau
-            $result = recupererDonnesClienLogin($mysqli, $login, $mot_de_passe);
+            $result = recupererDonnesClient($mysqli, $login, $mot_de_passe);
 
             if (!empty($result)) {
-                echo "Connexion réussie.";
-                $_SESSION["connected"] = $login;
+                $_SESSION["estConnecte"] = true;
+                $_SESSION["login"] = $login;
+                $_SESSION["mot_de_passe"] = $mot_de_passe;
+            }else{
+              $erreurs["mot_de_passe_vide"] = "ERREUR :  Le mot de passe spécifié est incorrect";
             }
-        }
-    }
+        } else {
+            $erreurs["login_incorrect"] = "ERREUR : Il n'y a aucun utilisateur associé au login spécifié";
 
-    //affichage des erreur
-    if (isset($erreurs)) {
-        foreach ($erreurs as $erreur) {
-            echo "<p class='erreur'>$erreur</p>";
         }
+
     }
 }
 ?>
 
 <?php
-if (isset($_SESSION["connected"])) {
-    echo "<p>Connecté en temps que " . $_SESSION['connected'] . ". <a href='deconnexion.php'>Deconnexion</a></p>";
+mysqli_close($mysqli);
+?>
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Deconnection</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/base.css">
+    <?php include_once "util/iconLien.php"; ?>
+
+</head>
+
+<?php include_once "header.php"; ?>
+
+<body>
+
+<?php
+
+//affichage des erreur
+if (isset($erreurs)) {
+    foreach ($erreurs as $erreur) {
+        echo "<p class='erreur'>$erreur</p>";
+    }
+}
+
+if (isset($_SESSION["estConnecte"])) {
+    echo "Connexion réussie.";
+    echo "<p>Connecté en temps que " . $_SESSION["login"] . ". <a href='deconnexion.php'>Deconnexion</a></p>";
 } else {
     echo "<p>Vous n'êtes pas connecté</p>";
 }
+
 ?>
 
 <form method="post" action="connexion.php">
@@ -77,3 +107,10 @@ if (isset($_SESSION["connected"])) {
             name="submit"
             value="submit">
 </form>
+</body>
+
+<?php include "footer.php"; ?>
+
+</html>
+
+

@@ -1,8 +1,3 @@
-<?php
-session_start();
-$_SESSION = array();
-session_destroy();
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,10 +13,13 @@ session_destroy();
 <?php include_once "header.php"; ?>
 
 <body>
-<span class="connection_text"> Vous aviez été deconnécté</span>
+
+<span class="connection_text">Veuillez vous connecter ou vous inscrire</span>
+
+<input type="button" name="connexion" value="Connexion" onclick="window.location.href='connexion.php';"/>
+<input type="button" name="inscription" value="Inscription" onclick="window.location.href='inscription.php';">
 </body>
 
-<?php include_once "footer.php"; ?>
+<?php  include "footer.php"; ?>
 
 </html>
-

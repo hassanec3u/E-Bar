@@ -1,31 +1,9 @@
 <?php
 
 
-//permet de recuper les info d'un Client
-function recupererDonnesClient($connect, $mail, $mdp)
-{
-    //preparation de la requettee
-    $stat = mysqli_prepare($connect, "SELECT * 
-    FROM Client
-    WHERE mail = ? AND mot_de_passe = ?");
-    mysqli_stmt_bind_param($stat, "ss", $mail, $mdp);
-    mysqli_stmt_execute($stat);
 
-    //verifie le mot de passe
-    mysqli_stmt_store_result($stat);
-    if (mysqli_stmt_num_rows($stat) == 0) {
-        echo("ERREUR :  Le mot de passe spécifié est incorrect");
-        return null;
-    } else {
-        //recupeation de la requete
-        mysqli_stmt_bind_result($stat, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11);
-        mysqli_stmt_fetch($stat);
-        return array("id" => $r1, "login" => $r2, "mot_de_passe" => $r3, "nom" => $r4,
-            "prenom" => $r5, "sexe" => $r6, "mail" => $r7, "adresse" => $r8, "code_postale" => $r9, "ville" => $r10, "numero_tel" => $r11);
-    }
-}
 
-function recupererDonnesClienLogin($connect, $login, $mdp)
+function recupererDonnesClient($connect, $login, $mdp)
 {
     //preparation de la requettee
     $stat = mysqli_prepare($connect, "SELECT * 
@@ -37,19 +15,15 @@ function recupererDonnesClienLogin($connect, $login, $mdp)
     //verifie le mot de passe
     mysqli_stmt_store_result($stat);
     if (mysqli_stmt_num_rows($stat) == 0) {
-        echo("ERREUR :  Le mot de passe spécifié est incorrect");
         return null;
     } else {
         //recupeation de la requete
         mysqli_stmt_bind_result($stat, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11);
         mysqli_stmt_fetch($stat);
         return array("id" => $r1, "login" => $r2, "mot_de_passe" => $r3, "nom" => $r4,
-            "prenom" => $r5, "sexe" => $r6, "login" => $r7, "adresse" => $r8, "code_postale" => $r9, "ville" => $r10, "numero_tel" => $r11);
+            "prenom" => $r5, "sexe" => $r6, "mail" => $r7, "adresse" => $r8, "code_postale" => $r9, "ville" => $r10, "numero_tel" => $r11);
     }
 }
-
-//renvoie le resultat sous forme de table
-
 
 //permet d'incrire un nouveau Client
 function ajouterClient($connect, $login, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel)
@@ -65,22 +39,6 @@ function ajouterClient($connect, $login, $mot_de_passe, $nom, $prenom, $sexe, $m
 }
 
 
-function verifierSiMailExiste($connect, $mail)
-{
-    $stat = mysqli_prepare($connect, "SELECT * 
-    FROM Client
-    WHERE mail = ?");
-    mysqli_stmt_bind_param($stat, "s", $mail);
-    mysqli_stmt_execute($stat);
-    mysqli_stmt_store_result($stat);
-    if (mysqli_stmt_num_rows($stat) == 0) {
-        echo("ERREUR : Il n'y a aucun utilisateur associé à l'adresse mail spécifiée");
-        return false;
-    } else {
-        return true;
-    }
-}
-
 function verifierSiLoginExiste($connect, $login)
 {
     $stat = mysqli_prepare($connect, "SELECT * 
@@ -90,7 +48,6 @@ function verifierSiLoginExiste($connect, $login)
     mysqli_stmt_execute($stat);
     mysqli_stmt_store_result($stat);
     if (mysqli_stmt_num_rows($stat) == 0) {
-        echo("ERREUR : Il n'y a aucun utilisateur associé au login spécifié");
         return false;
     } else {
         return true;
@@ -103,8 +60,12 @@ function mettreAJourDonnesClient($connect, $login, $mdp, $nom, $prenom, $sexe, $
     $stat = mysqli_prepare($connect, "UPDATE Client
 SET nom =? , prenom = ?, sexe = ? ,mail = ? ,adresse = ? ,code_postale = ? ,ville = ? ,numero_tel = ?
 WHERE login = ? AND mot_de_passe = ? ");
-    mysqli_stmt_bind_param($connect, "ssssssssss", $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $login, $mdp);
-    mysqli_stmt_execute($stat);
+    mysqli_stmt_bind_param($stat, "ssssssssss", $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $login, $mdp);
+    $aReussi = mysqli_stmt_execute($stat);
+
+    if (!$aReussi) {
+        echo("Impossible de mettre a jour les information du client: " . mysqli_error($connect));
+    }
 }
 
 function ajouterRecette($connect, $id, $titreR) {
