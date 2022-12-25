@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <title></title>
         <meta charset="utf-8">
@@ -10,7 +10,7 @@
         <header>
             <h1>Accès hiérarchique aux recettes à partir de la hiérarchie des aliments</h1>
 
-            <a href="/panier.php">Panier</a>
+            <a href="panier.php">Panier</a>
         </header>
 
         <?php
@@ -102,8 +102,8 @@
                 
                 <?php if ($ingredient == $aliment) { ?> 
                     <div class="recette">
-                        <h2><?php echo $recette["titre"]; ?></h1>
-                        <img src="<?php echo "http://" . $_SERVER["HTTP_HOST"] . "/Photos/" . str_replace(" ", "_", $recette["titre"]) . ".jpg"; ?>">
+                        <h2><?php echo $recette["titre"]; ?></h2>
+                        <img src="<?php echo "http://" . $_SERVER["HTTP_HOST"] . "/Photos/" . str_replace(" ", "_", $recette["titre"]) . ".jpg"; ?>" alt="photo recette">
                         <p>Ingredients : <?php echo $recette["ingredients"]; ?>
                         <p>Preparation : <?php echo $recette["preparation"]; ?>
                         <p><a href="">Ajouter au panier</a></p>    

@@ -3,8 +3,7 @@ session_start();
 
 //contien le lien ou on sera rediriger en cas de click sur "mon profil"
 $lienRedirection = '';
-
-if(isset($_SESSION["estConnecte"]) ){
+if(isset($_SESSION["connected"]) ){
     $lienRedirection="profil.php";
 }else{
     $lienRedirection="authentification.php";
