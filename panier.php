@@ -59,7 +59,6 @@
             } else {
                 // affichage du contenu du panier
                 if (isset($_SESSION["connected"])) {
-                    echo "test";
                     $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur de connexion");
                     $panierSql = recupererPanier($mysqli, $_SESSION["connected"]["id"]);
 

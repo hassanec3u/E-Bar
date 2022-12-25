@@ -87,7 +87,6 @@ function viderRecettesClient($connect, $idClient) {
 
 function recupererPanier($connect, $idClient) {
     $stmt = mysqli_prepare($connect, "select * from RecetteClient rc, Recette r where rc.idClient = ? and rc.idRecette = r.id");
-    echo $idClient;
     $stmt->bind_param("s", $idClient);
     /* execute statement */
     $stmt->execute();
