@@ -15,7 +15,13 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
 
             }
         </style>
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/base.css">
+
+        <?php include_once "util/iconLien.php"?>
     </head>
+    <?php include_once "header.php" ?>
     <body>
     <h1>Mes informations Personnelles</h1>
 
@@ -30,8 +36,6 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
     //on les recuperes pour pouvoir les afficher plus tard
     $donnesClient = recupererDonnesClient($mysqli, $_SESSION["login"], $_SESSION["mot_de_passe"]);
     ?>
-
-
     <form method="post">
         <label>
             Nom utilisateur :
@@ -85,10 +89,9 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
 
         <input type="submit" id="mettreAjour" name="mettreAjour" value="Mettre A jour">
         <input type="button" name="deconnection" value="Deconnection" onclick="window.location.href='deconnexion.php'">
-
     </form>
-
     </body>
+    <?php include_once "footer.php"?>
     </html>
 
 <?php

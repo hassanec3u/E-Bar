@@ -15,7 +15,6 @@ function recupererDonnesClient($connect, $login, $mdp)
     //verifie le mot de passe
     mysqli_stmt_store_result($stat);
     if (mysqli_stmt_num_rows($stat) == 0) {
-        echo("ERREUR :  Le mot de passe spécifié est incorrect");
         return null;
     } else {
         //recupeation de la requete
@@ -49,7 +48,6 @@ function verifierSiLoginExiste($connect, $login)
     mysqli_stmt_execute($stat);
     mysqli_stmt_store_result($stat);
     if (mysqli_stmt_num_rows($stat) == 0) {
-        echo("ERREUR : Il n'y a aucun utilisateur associé au login spécifié");
         return false;
     } else {
         return true;
@@ -70,17 +68,5 @@ WHERE login = ? AND mot_de_passe = ? ");
     }
 }
 
-
-
-
-
-
-
-
-//ajouterClient("abouKore", "abcdef", "Kore", "Aboubacar", "H", "xxx@gmail.com", "rue bazin", "54000", "nancy", "455555550");
-//mettreAJourDonnesClient("bouKore", "abcdef", "tata", "almou", "h", "ras", "ras", "ras", "ras", "ras");
-
-//$test = recupererDonnesClient("abouKore","abcdef");
-//$res = recupererInformation('abouKore','abcdef');
 
 
