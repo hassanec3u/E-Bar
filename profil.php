@@ -13,8 +13,7 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
                 display: block;
             }
 
-            }
-        </style>
+                    </style>
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/base.css">
@@ -26,7 +25,10 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
     <h1>Mes informations Personnelles</h1>
 
     <?php
-
+    if (!(isset($_SESSION["connected"]))) {
+        echo "Connectez vous pour accéder à cette page.";
+    } else {
+        
     //on met a jour les nouvelles informations du client dans la bdd
     if (isset($_POST["mettreAjour"])) {
         mettreAJourDonnesClient($mysqli, $_POST["nom_utilisateur"], $_POST["mot_de_passe"], $_POST["nom"], $_POST["prenom"]
@@ -34,7 +36,7 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
     }
 
     //on les recuperes pour pouvoir les afficher plus tard
-    $donnesClient = recupererDonnesClient($mysqli, $_SESSION["login"], $_SESSION["mot_de_passe"]);
+    $donnesClient = recupererDonnesClient($mysqli, $_SESSION["connected"]["login"], $_SESSION["connected"]["mot_de_passe"]);
     ?>
     <form method="post">
         <label>
@@ -90,6 +92,8 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
         <input type="submit" id="mettreAjour" name="mettreAjour" value="Mettre A jour">
         <input type="button" name="deconnection" value="Deconnection" onclick="window.location.href='deconnexion.php'">
     </form>
+
+    <?php } ?>
     </body>
     <?php include_once "footer.php"?>
     </html>
