@@ -1,11 +1,10 @@
 body{
     margin: 0;
-    padding: 0;
     background-size: cover;
     background: url('../res/header-background.jpg') no-repeat;
     color: white;
     font-family: 'Kanit', sans-serif;
-
+    padding: 0 0 300px;
 }
 
 .connection_text{
