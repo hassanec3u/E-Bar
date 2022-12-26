@@ -20,7 +20,7 @@ session_start();
 
 <body>
 <section id="contenu_page">
-
+    
 </section>
 </body>
 
