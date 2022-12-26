@@ -19,7 +19,7 @@ foreach ($Hierarchie as $Aliment => $Details) {
     if (preg_match($pattern, $Aliment)) {
         if (isset($Details["sous-categorie"])) {
             foreach ($Details["sous-categorie"] as $AlimentSousCategorie) {
-                echo "<p>" . $AlimentSousCategorie . "</p>";
+                echo "<p><a href='" . $_SERVER["SCRIPT_NAME"] .  "/../../hierarchie.php/" . $AlimentSousCategorie . "'>" . $AlimentSousCategorie . "</a></p>";
             }
         }
     }    
