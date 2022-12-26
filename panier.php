@@ -10,7 +10,9 @@
     </head>
 
     <body>
-        <?php include_once "header.php"; ?>
+    <?php include_once "header.php"; ?>
+
+        <section id="contenu_page">
 
         <h1>Votre panier</h1>
 
@@ -126,6 +128,7 @@
         }
 
         ?>
+        </section>
 
         <?php include_once "footer.php"; ?>
 

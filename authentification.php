@@ -13,11 +13,13 @@
 <?php include_once "header.php"; ?>
 
 <body>
+<section id="contenu_page">
 
 <span class="connection_text">Veuillez vous connecter ou vous inscrire</span>
 
 <input type="button" name="connexion" value="Connexion" onclick="window.location.href='connexion.php';"/>
 <input type="button" name="inscription" value="Inscription" onclick="window.location.href='inscription.php';">
+</section>
 </body>
 
 <?php  include "footer.php"; ?>

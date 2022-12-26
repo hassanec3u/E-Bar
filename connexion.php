@@ -60,6 +60,7 @@ mysqli_close($mysqli);
 </head>
 <?php include_once "header.php"; ?>
 <body>
+<section id="contenu_page">
 <?php
 
 //affichage des erreur
@@ -127,6 +128,7 @@ if (isset($_SESSION["connected"])) {
             name="submit"
             value="submit">
 </form>
+</section>
 </body>
 
 <?php include_once "footer.php"; ?>

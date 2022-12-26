@@ -18,7 +18,9 @@ session_destroy();
 <?php include_once "header.php"; ?>
 
 <body>
+<section id="contenu_page">
 <span class="connection_text"> Vous aviez été deconnécté</span>
+</section>
 </body>
 
 <?php include_once "footer.php"; ?>

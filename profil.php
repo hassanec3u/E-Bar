@@ -30,6 +30,7 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
 </head>
 <?php include_once "header.php" ?>
 <body>
+    <section id="contenu_page">
 <h1>Mes informations Personnelles</h1>
 
 <?php
@@ -106,7 +107,7 @@ $donnesClient = recupererDonnesClient($mysqli, $_SESSION["connected"]["login"], 
            onclick="window.location.href='deconnexion.php'">
 </form>
 
-
+</section>
 </body>
 <?php include_once "footer.php" ?>
 </html>

@@ -19,8 +19,9 @@ session_start();
 <?php include_once "header.php" ?>
 
 <body>
+<section id="contenu_page">
 
-
+</section>
 </body>
 
 <?php include_once "footer.php" ?>

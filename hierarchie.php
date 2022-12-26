@@ -11,7 +11,9 @@
     </head>
 
     <body>
-        <?php include_once "header.php"; ?>
+    <?php include_once "header.php"; ?>
+
+    <section id="contenu_page">
 
 
         <?php
@@ -111,6 +113,7 @@
             <?php } ?> 
         <?php } ?>
         </div>
+        </section>
 
         <?php include_once "footer.php"; ?>
 
@@ -151,7 +154,6 @@
                 boutonAjoutPanier[i].addEventListener("click", ajouterArticlePanier);
             }
         </script>
-
 
     </body>
 </html>
