@@ -27,14 +27,21 @@ if (isset($submit)) {
 
     if (!isset($erreurs)) {
         if (verifierSiLoginExiste($mysqli, $login)) {
+            $mdp_hash = recupererMotDePasse($mysqli, $login);
 
-            //stocke les information du client dans un tableau
-            $result = recupererDonnesClient($mysqli, $login, $mot_de_passe);
+            if (password_verify($mot_de_passe, $mdp_hash)) {
+                            //stocke les information du client dans un tableau
 
-            if (!empty($result)) {
-                // echo "Connexion réu ssie.";
-                $_SESSION["connected"] = $result;
+                $result = recupererDonnesClient($mysqli, $login, $mdp_hash);
+
+                if (!empty($result)) {
+                    // echo "Connexion réu ssie.";
+                    $_SESSION["connected"] = $result;
+                }
+
             }
+
+            
         } else {
             $erreurs["login_incorrect"] = "ERREUR : Il n'y a aucun utilisateur associé au login spécifié";
 

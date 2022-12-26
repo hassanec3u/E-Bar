@@ -24,7 +24,7 @@ $Sql = "
 		CREATE TABLE IF NOT EXISTS Client (
             id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
             login VARCHAR(25) UNIQUE NOT NULL,
-            mot_de_passe varchar(25) NOT NULL,
+            mot_de_passe varchar(256) NOT NULL,
             nom varchar(25) ,
             prenom varchar(25),
             sexe varchar(1),	
