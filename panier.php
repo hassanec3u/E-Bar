@@ -66,7 +66,7 @@
 
                     echo "<ul>";
                     foreach($panierSql as $x) {
-                        echo htmlentities("<li><span class=\"aliment\">" . $x["titreR"] . "</span> <span class=\"supprimer\">❌</span></li>");
+                        echo "<li><span class=\"aliment\">" . htmlentities($x["titreR"]) . "</span> <span class=\"supprimer\">❌</span></li>";
                     } 
                     echo "</ul>";
 
@@ -77,7 +77,7 @@
                     } else {
                         echo "<ul>";
                         foreach($panier as $aliment) {
-                            echo htmlentities("<li><span class=\"aliment\">" . $aliment . "</span> <span class=\"supprimer\">❌</span></li>");
+                            echo "<li><span class=\"aliment\">" . htmlentities($aliment) . "</span> <span class=\"supprimer\">❌</span></li>";
                         }
                         echo "</ul>";
                     }

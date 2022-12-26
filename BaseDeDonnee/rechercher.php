@@ -12,7 +12,7 @@ $mysqli->close();
 echo "<h1>Recettes</h1>";
 
 foreach ($rec as $recette) {
-    echo htmlentities("<p><a href='" . $_SERVER["SCRIPT_NAME"] .  "/../../hierarchie.php/" . $recette["titreR"] . "'>" . $recette["titreR"] . "</a></p>");
+    echo "<p><a href='" . $_SERVER["SCRIPT_NAME"] .  "/../../hierarchie.php/" . htmlentities($recette["titreR"]) . "'>" . htmlentities($recette["titreR"]) . "</a></p>";
 }
 
 echo "<h1>Aliments</h1>";
@@ -23,7 +23,7 @@ foreach ($Hierarchie as $Aliment => $Details) {
     if (preg_match($pattern, $Aliment)) {
         if (isset($Details["sous-categorie"])) {
             foreach ($Details["sous-categorie"] as $AlimentSousCategorie) {
-                echo htmlentities("<p><a href='" . $_SERVER["SCRIPT_NAME"] .  "/../../hierarchie.php/" . $AlimentSousCategorie . "'>" . $AlimentSousCategorie . "</a></p>");
+                echo "<p><a href='" . $_SERVER["SCRIPT_NAME"] .  "/../../hierarchie.php/" . htmlentities($AlimentSousCategorie) . "'>" . htmlentities($AlimentSousCategorie) . "</a></p>";
             }
         }
     }    
