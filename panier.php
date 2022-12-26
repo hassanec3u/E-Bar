@@ -121,7 +121,7 @@
                 $mysqli->close();
             }
 
-            setcookie("panier", json_encode($panier));
+            setcookie("panier", json_encode($panier), 0, "/");
 
         }
 
@@ -142,6 +142,7 @@
                     });
 
                     console.log("suppression", aliment);
+                    alert("Vous avez supprimé " + aliment + " du panier");
                     console.log(`/<?php echo $_SERVER["SCRIPT_NAME"]; ?>/panier.php?supprimer=${aliment}`)
                 });
             }
