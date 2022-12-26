@@ -52,4 +52,7 @@ foreach (explode(';', $Sql) as $Requete) {
 
 mysqli_close($mysqli);
 
+include "insertion.php";
+
+
 ?>
