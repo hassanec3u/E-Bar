@@ -82,7 +82,7 @@ if (isset($submit)) {
         $erreurs["ville"] = "Le champ ville est vide ou plus long que 25 caractères.";
     }
 
-    if (strlen($numero_tel) >= 10) {
+    if (strlen($numero_tel) > 10) {
         $erreurs["ville"] = "Le champ numero_tel est vide ou plus long que 10 caractères.";
     }
 

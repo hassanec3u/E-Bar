@@ -23,7 +23,7 @@
         if (!isset($_COOKIE["panier"])) { 
             // si le cookie panier n'existe on le crée
             setcookie("panier", json_encode([]), 0, "/");
-
+            echo "reset";
         } else {
             $panier = json_decode($_COOKIE["panier"], true);
 
@@ -57,12 +57,13 @@
                     $mysqli->close();
                 }
                
-                setcookie("panier", json_encode($panier));
+                setcookie("panier", json_encode($panier), 0, "/");
             } else {
                 // affichage du contenu du panier
                 if (isset($_SESSION["connected"])) {
                     $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur de connexion");
                     $panierSql = recupererPanier($mysqli, $_SESSION["connected"]["id"]);
+
 
                     echo "<ul>";
                     foreach($panierSql as $x) {
