@@ -25,6 +25,7 @@ $adresse = "";
 $code_postal = "";
 $ville = "";
 $numero_tel = "";
+$date_naissance = "";
 
 //verifie si le formulaire   ete validé
 if (isset($_POST["submit"])) $submit = $_POST["submit"];
@@ -41,6 +42,8 @@ if (isset($submit)) {
     if (isset($_POST["code_postal"])) $code_postal = $_POST["code_postal"];
     if (isset($_POST["ville"])) $ville = $_POST["ville"];
     if (isset($_POST["numero_tel"])) $numero_tel = $_POST["numero_tel"];
+    if (isset($_POST["date_naissance"])) $date_naissance = $_POST["date_naissance"];
+
 
     // test longueur des champs du formulaire
     if (strlen($nom_utilisateur) == 0 || strlen($nom_utilisateur) >= 32) {
@@ -83,11 +86,19 @@ if (isset($submit)) {
         $erreurs["ville"] = "Le champ numero_tel est vide ou plus long que 10 caractères.";
     }
 
+    if ($date_naissance == "") {
+        $date_naissance = null;
+    }
+
+    
+
     // test longueur
     if (!isset($erreurs)) {
         //ajout de client dans la bdd
-        if (!ajouterClient($mysqli, $nom_utilisateur, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postal, $ville, $numero_tel)) {
+        if (!ajouterClient($mysqli, $nom_utilisateur, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postal, $ville, $numero_tel, $date_naissance)) {
             $erreurs["numero_tel"] = "Impossible d'ajouter un client: Login deja utilisé" ;
+        } else {
+            $inscriptionReussie = true;
         }
 
     }
@@ -116,6 +127,14 @@ if (isset($erreurs)) {
     }
 }
 ?>
+
+<?php 
+if (isset($inscriptionReussie)) {
+    echo "<h1>Inscription réussie</h1>";
+} else {
+?>
+
+
 <form method="post" action="inscription.php">
     <label>
         Nom utilisateur :
@@ -199,11 +218,22 @@ if (isset($erreurs)) {
                 value="<?php echo htmlentities($numero_tel); ?>">
     </label>
 
+    <label>
+        Date de naissance :
+        <input
+                type="date"
+                name="date_naissance"
+                value="<?php echo htmlentities($date_naissance); ?>">
+    </label>
+
     <input
             type="submit"
             name="submit"
             value="submit">
 </form>
+<?php
+}
+?>
 </section>
 </body>
 

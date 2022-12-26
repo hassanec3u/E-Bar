@@ -32,7 +32,8 @@ $Sql = "
             adresse varchar(50),
             code_postale varchar(5),
             ville varchar(25),
-            numero_tel varchar(10)
+            numero_tel varchar(10),
+            date_naissance date
         );
 
         CREATE TABLE IF NOT EXISTS Recette (

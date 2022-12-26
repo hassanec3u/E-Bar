@@ -36,11 +36,26 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
 <?php
 
 
+if (isset($_POST["date_naissance"])) {
+    if ($_POST["date_naissance"] == "") {
+        $_POST["date_naissance"] = null;
+
+    }
+}
+
+// print_r($_POST);
+$mdp_hash = recupererMotDePasse($mysqli, $_SESSION["connected"]["login"]);
+$donnesClient = recupererDonnesClient($mysqli, $_SESSION["connected"]["login"], $mdp_hash);
+
 //on met a jour les nouvelles informations du client dans la bdd
 if (isset($_POST["mettreAjour"])) {
+    echo "<h1>" . $_POST["date_naissance"] . "</h1>";
+
     if (mettreAJourDonnesClient($mysqli, $_POST["nom_utilisateur"], $_POST["mot_de_passe"], $_POST["nom"], $_POST["prenom"]
-        , $_POST["sexe"], $_POST["mail"], $_POST["adresse"], $_POST["code_postal"], $_POST["ville"], $_POST["numero_tel"])) {
+        , $_POST["sexe"], $_POST["mail"], $_POST["adresse"], $_POST["code_postal"], $_POST["ville"], $_POST["numero_tel"], $_POST["date_naissance"], $_POST["ancien_login"], $_POST["ancien_mdp"])) {
         echo "Mise A jour reussi";
+
+        $_SESSION["connected"] = recupererDonnesClient($mysqli, $_SESSION["connected"]["login"], $mdp_hash);
     } else {
         echo "Mise A jour echoué";
 
@@ -48,58 +63,70 @@ if (isset($_POST["mettreAjour"])) {
 }
 
 //on les recuperes pour pouvoir les afficher plus tard
-$donnesClient = recupererDonnesClient($mysqli, $_SESSION["connected"]["login"], $_SESSION["connected"]["mot_de_passe"]);
+
+
+print_r($_POST);
 ?>
 <form method="post">
+    <input type="hidden" name="ancien_login" value="<?php echo $_SESSION["connected"]["login"]; ?>">
+    <input type="hidden" name="ancien_mdp" value="<?php echo $mdp_hash ?>">
+
     <label>
         Nom utilisateur :
-        <input type="text" name="nom_utilisateur" value="<?php echo htmlentities($donnesClient["login"]); ?>" required>
+        <input type="text" name="nom_utilisateur" value="">
     </label>
 
     <label>
         Mot de passe :
-        <input type="password" name="mot_de_passe" value="<?php echo htmlentities($donnesClient["mot_de_passe"]); ?>"
-               required>
+        <input type="password" name="mot_de_passe" value="">
     </label>
 
     <label>
         Nom :
-        <input type="text" id="nom" name="nom" value="<?php echo htmlentities($donnesClient["nom"]); ?>">
+        <input type="text" id="nom" name="nom" value="">
     </label>
 
     <label>
         Prenom :
-        <input type="text" name="prenom" value="<?php echo htmlentities($donnesClient["prenom"]); ?>">
+        <input type="text" name="prenom" value="">
     </label>
 
     <label>
         Sexe :
-        <input type="text" name="sexe" value="<?php echo htmlentities($donnesClient["sexe"]); ?>">
+        <input type="text" name="sexe" value="">
     </label>
 
     <label>
         Mail :
-        <input type="email" name="mail" value="<?php echo htmlentities($donnesClient["mail"]); ?>">
+        <input type="email" name="mail" value="">
     </label>
 
     <label>
         Adresse :
-        <input type="text" name="adresse" value="<?php echo htmlentities($donnesClient["adresse"]); ?>">
+        <input type="text" name="adresse" value="">
     </label>
 
     <label>
         Code postal :
-        <input type="text" name="code_postal" value="<?php echo htmlentities($donnesClient["code_postale"]); ?>">
+        <input type="text" name="code_postal" value="">
     </label>
 
     <label>
         Ville :
-        <input type="text" name="ville" value="<?php echo htmlentities($donnesClient["ville"]); ?>">
+        <input type="text" name="ville" value="">
     </label>
 
     <label>
         Numero tel :
-        <input type="number" name="numero_tel" value="<?php echo htmlentities($donnesClient["numero_tel"]); ?>">
+        <input type="number" name="numero_tel" value="">
+    </label>
+
+    <label>
+        Date de naissance :
+        <input
+                type="date"
+                name="date_naissance"
+                value="<?php echo htmlentities($date_naissance); ?>">
     </label>
 
     <input type="submit" id="mettreAjour" name="mettreAjour" value="Mettre A jour">

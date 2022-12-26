@@ -7,7 +7,7 @@ function recupererDonnesClient($connect, $login, $mdp)
     FROM Client
     WHERE login = ? AND mot_de_passe = ?");
     mysqli_stmt_bind_param($stat, "ss", $login, $mdp);
-    
+
     mysqli_stmt_execute($stat);
 
     //verifie le mot de passe
@@ -16,10 +16,10 @@ function recupererDonnesClient($connect, $login, $mdp)
         return null;
     } else {
         //recupeation de la requete
-        mysqli_stmt_bind_result($stat, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11);
+        mysqli_stmt_bind_result($stat, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12);
         mysqli_stmt_fetch($stat);
         return array("id" => $r1, "login" => $r2, "mot_de_passe" => $r3, "nom" => $r4,
-            "prenom" => $r5, "sexe" => $r6, "mail" => $r7, "adresse" => $r8, "code_postale" => $r9, "ville" => $r10, "numero_tel" => $r11);
+            "prenom" => $r5, "sexe" => $r6, "mail" => $r7, "adresse" => $r8, "code_postale" => $r9, "ville" => $r10, "numero_tel" => $r11, "date_naissance" => $r12);
     }
 }
 
@@ -36,19 +36,19 @@ function recupererMotDePasse($connect, $login) {
         return null;
     } else {
         //recupeation de la requete
-        mysqli_stmt_bind_result($stat, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11);
+        mysqli_stmt_bind_result($stat, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12);
         mysqli_stmt_fetch($stat);
         return array("id" => $r1, "login" => $r2, "mot_de_passe" => $r3, "nom" => $r4,
-            "prenom" => $r5, "sexe" => $r6, "mail" => $r7, "adresse" => $r8, "code_postale" => $r9, "ville" => $r10, "numero_tel" => $r11)["mot_de_passe"];
+            "prenom" => $r5, "sexe" => $r6, "mail" => $r7, "adresse" => $r8, "code_postale" => $r9, "ville" => $r10, "numero_tel" => $r11, "date_naissance" => $r12)["mot_de_passe"];
     }
 }
 
 //permet d'incrire un nouveau Client
-function ajouterClient($connect, $login, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel)
+function ajouterClient($connect, $login, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $date_naissance)
 {
-    $stat = mysqli_prepare($connect, "INSERT INTO Client VALUES (NULL,?,?,?,?,?,?,?,?,?,?)");
+    $stat = mysqli_prepare($connect, "INSERT INTO Client VALUES (NULL,?,?,?,?,?,?,?,?,?,?, ?)");
     $mot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-    mysqli_stmt_bind_param($stat, "ssssssssss", $login, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel);
+    mysqli_stmt_bind_param($stat, "sssssssssss", $login, $mot_de_passe, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $date_naissance);
     $aReussi = mysqli_stmt_execute($stat);
 
     if (!$aReussi) {
@@ -75,12 +75,14 @@ function verifierSiLoginExiste($connect, $login)
 }
 
 //mise a jour des donnés personnelles
-function mettreAJourDonnesClient($connect, $login, $mdp, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel)
+function mettreAJourDonnesClient($connect, $login, $mdp, $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $date_naissance, $ancien_login, $ancien_mdp)
 {
+
+    $mdp = password_hash($mdp, PASSWORD_DEFAULT);
     $stat = mysqli_prepare($connect, "UPDATE Client
-SET nom =? , prenom = ?, sexe = ? ,mail = ? ,adresse = ? ,code_postale = ? ,ville = ? ,numero_tel = ?
+SET nom =? , prenom = ?, sexe = ? ,mail = ? ,adresse = ? ,code_postale = ? ,ville = ? ,numero_tel = ?, date_naissance = ?, login = ?, mot_de_passe = ?
 WHERE login = ? AND mot_de_passe = ? ");
-    mysqli_stmt_bind_param($stat, "ssssssssss", $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $login, $mdp);
+    mysqli_stmt_bind_param($stat, "sssssssssssss", $nom, $prenom, $sexe, $mail, $adresse, $code_postale, $ville, $numero_tel, $date_naissance, $login, $mdp, $ancien_login, $ancien_mdp);
     mysqli_stmt_execute($stat);
     if (mysqli_affected_rows($connect) >0 ) {
         return true;
