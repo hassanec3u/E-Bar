@@ -14,7 +14,7 @@ $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur
     <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Mon profil utilisateur</title>
+    <title>Mes donnes personnelles</title>
     <meta charset="utf-8"/>
     <style>
         label {
