@@ -46,11 +46,8 @@
         // affichage du parcours de l'utilisateur à travers les différents aliments
         foreach($routes as $i => $route) {
             $n = count($routes) - $i - 1;
-            $href = "";
 
-            for ($x = 0; $x < $n; $x++) {
-                $href .= "../";
-            }
+            $href = str_repeat("../", $n);
             
             echo "<a href=\"$href\">" . urldecode($route) . "</a> / ";
         }
@@ -104,7 +101,7 @@
                 <?php if ($ingredient == $aliment) { ?> 
                     <div class="recette">
                         <h2><?php echo $recette["titre"]; ?></h2>
-                        <img src="<?php echo $_SERVER["SCRIPT_NAME"] . "/../Photos/" . str_replace(" ", "_", $recette["titre"]) . ".jpg"; ?>" alt="photo recette">
+                        <img src="<?php echo $_SERVER["SCRIPT_NAME"] . "/../Photos/" . str_replace(" ", "_", $recette["titre"]) . ".jpg"; ?>" alt="">
                         <p>Ingredients : <?php echo $recette["ingredients"]; ?>
                         <p>Preparation : <?php echo $recette["preparation"]; ?>
                         <p><a href="">Ajouter au panier</a></p>    
@@ -150,7 +147,7 @@
 
             let boutonAjoutPanier = document.querySelectorAll(".recette a");
 
-            for (i = 0; i < boutonAjoutPanier.length; i++) {
+            for (let i = 0; i < boutonAjoutPanier.length; i++) {
                 boutonAjoutPanier[i].addEventListener("click", ajouterArticlePanier);
             }
         </script>

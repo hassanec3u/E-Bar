@@ -133,7 +133,7 @@
         <script>
             let supprimer = document.querySelectorAll(".supprimer");
 
-            for (i = 0; i < supprimer.length; i++) {
+            for (let i = 0; i < supprimer.length; i++) {
                 supprimer[i].addEventListener("click", (e) => {
                     let aliment = e.target.parentNode.querySelector(".aliment").innerHTML;
 

@@ -25,6 +25,6 @@ foreach ($Hierarchie as $Aliment => $Details) {
     }    
 }
 
-echo 'ok';
+echo 'test Jus de tomate';
 
 ?>

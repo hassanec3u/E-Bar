@@ -76,6 +76,7 @@ if (isset($_SESSION["connected"])) {
     if (isset($_COOKIE["panier"])) {
         $panier = json_decode($_COOKIE["panier"], true);
 
+        //deja connecté a ligne 7 ?
         $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur de connexion");
 
         try {
