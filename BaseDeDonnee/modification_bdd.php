@@ -108,7 +108,7 @@ function recupererPanier($connect, $idClient) {
 
 function rechercher($connect, $recherche) {
     $recherche = "$recherche%";
-    $stmt = mysqli_prepare($connect, 'select * from Recette r where r.titreR like ?');
+    $stmt = mysqli_prepare($connect, 'select * from Recette r where r.titreR like ? LIMIT 5');
     $stmt->bind_param("s", $recherche);
     /* execute statement */
     $stmt->execute();
