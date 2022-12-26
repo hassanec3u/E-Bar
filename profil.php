@@ -53,53 +53,53 @@ $donnesClient = recupererDonnesClient($mysqli, $_SESSION["connected"]["login"], 
 <form method="post">
     <label>
         Nom utilisateur :
-        <input type="text" name="nom_utilisateur" value="<?php echo $donnesClient["login"]; ?>" required>
+        <input type="text" name="nom_utilisateur" value="<?php echo htmlentities($donnesClient["login"]); ?>" required>
     </label>
 
     <label>
         Mot de passe :
-        <input type="password" name="mot_de_passe" value="<?php echo $donnesClient["mot_de_passe"]; ?>"
+        <input type="password" name="mot_de_passe" value="<?php echo htmlentities($donnesClient["mot_de_passe"]); ?>"
                required>
     </label>
 
     <label>
         Nom :
-        <input type="text" id="nom" name="nom" value="<?php echo $donnesClient["nom"]; ?>">
+        <input type="text" id="nom" name="nom" value="<?php echo htmlentities($donnesClient["nom"]); ?>">
     </label>
 
     <label>
         Prenom :
-        <input type="text" name="prenom" value="<?php echo $donnesClient["prenom"]; ?>">
+        <input type="text" name="prenom" value="<?php echo htmlentities($donnesClient["prenom"]); ?>">
     </label>
 
     <label>
         Sexe :
-        <input type="text" name="sexe" value="<?php echo $donnesClient["sexe"]; ?>">
+        <input type="text" name="sexe" value="<?php echo htmlentities($donnesClient["sexe"]); ?>">
     </label>
 
     <label>
         Mail :
-        <input type="email" name="mail" value="<?php echo $donnesClient["mail"]; ?>">
+        <input type="email" name="mail" value="<?php echo htmlentities($donnesClient["mail"]); ?>">
     </label>
 
     <label>
         Adresse :
-        <input type="text" name="adresse" value="<?php echo $donnesClient["adresse"]; ?>">
+        <input type="text" name="adresse" value="<?php echo htmlentities($donnesClient["adresse"]); ?>">
     </label>
 
     <label>
         Code postal :
-        <input type="text" name="code_postal" value="<?php echo $donnesClient["code_postale"]; ?>">
+        <input type="text" name="code_postal" value="<?php echo htmlentities($donnesClient["code_postale"]); ?>">
     </label>
 
     <label>
         Ville :
-        <input type="text" name="ville" value="<?php echo $donnesClient["ville"]; ?>">
+        <input type="text" name="ville" value="<?php echo htmlentities($donnesClient["ville"]); ?>">
     </label>
 
     <label>
         Numero tel :
-        <input type="number" name="numero_tel" value="<?php echo $donnesClient["numero_tel"]; ?>">
+        <input type="number" name="numero_tel" value="<?php echo htmlentities($donnesClient["numero_tel"]); ?>">
     </label>
 
     <input type="submit" id="mettreAjour" name="mettreAjour" value="Mettre A jour">

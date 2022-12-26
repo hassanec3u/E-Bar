@@ -55,6 +55,7 @@
         }
 
         $aliment = $routes[count($routes) - 1];
+
         $super_categorie = null;
         $sous_categorie = null;
         $aliment_existe = false;
@@ -68,13 +69,48 @@
         }
         ?>
 
-        <?php if (!$aliment_existe) { // si l'aliment n'existe pas, on affiche un message à l'utilisateur ?>
+        
+
+        <div id="aliment">
+
+            <?php 
+            
+                $estPageAliment = false;
+                foreach ($Recettes as $Recette) {
+                    if ($Recette["titre"] == $aliment) {
+                        $estPageAliment = true;
+                        $recette = $Recette;
+                    }    
+                }
+
+                if ($estPageAliment) {
+                    ?>
+
+                    <div class="recette">
+                        <h2><?php echo $recette["titre"]; ?></h2>
+                        <?php 
+                            $lien_image = $recette["titre"];
+                            $lien_image = strtolower($lien_image);
+                            $lien_image = ucfirst($lien_image);
+                        ?>
+                        <img src="<?php echo $_SERVER["SCRIPT_NAME"] . "/../Photos/" . str_replace(" ", "_", $lien_image) . ".jpg"; ?>" alt="">
+                        <p>Ingredients : <?php echo $recette["ingredients"]; ?>
+                        <p>Preparation : <?php echo $recette["preparation"]; ?>
+                        <p><a href="">Ajouter au panier</a></p>    
+                    </div>
+
+                    <?php
+                } else {
+
+                
+
+            ?>
+
+<?php if (!$aliment_existe) { // si l'aliment n'existe pas, on affiche un message à l'utilisateur ?>
             <?php ?>
             <p>L'aliment que vous avez spécifié n'existe pas.</p>
         <?php } else { ?>
 
-        <div id="aliment">
-            <h1><?php echo $aliment; ?></h1>
             <ul>
                 
             <?php if ($super_categorie != null) { // on affiche les super catégories seulement si l'aliment n'est pas la racine ?>
@@ -113,6 +149,7 @@
             <?php } ?> 
         <?php } ?>
         </div>
+        <?php } ?>
         </section>
 
         <?php include_once "footer.php"; ?>

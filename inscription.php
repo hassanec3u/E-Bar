@@ -122,7 +122,7 @@ if (isset($erreurs)) {
         <input
                 type="text"
                 name="nom_utilisateur"
-                value="<?php echo $nom_utilisateur; ?>"
+                value="<?php echo htmlentities($nom_utilisateur); ?>"
                 required>
     </label>
 
@@ -131,7 +131,7 @@ if (isset($erreurs)) {
         <input
                 type="password"
                 name="mot_de_passe"
-                value="<?php echo $mot_de_passe; ?>"
+                value="<?php echo htmlentities($mot_de_passe); ?>"
                 required>
     </label>
 
@@ -140,7 +140,7 @@ if (isset($erreurs)) {
         <input
                 type="text"
                 name="nom"
-                value="<?php echo $nom; ?>">
+                value="<?php echo htmlentities($nom); ?>">
     </label>
 
     <label>
@@ -148,7 +148,7 @@ if (isset($erreurs)) {
         <input
                 type="text"
                 name="prenom"
-                value="<?php echo $prenom; ?>">
+                value="<?php echo htmlentities($prenom); ?>">
     </label>
 
     <label>
@@ -156,7 +156,7 @@ if (isset($erreurs)) {
         <input
                 type="text"
                 name="sexe"
-                value="<?php echo $sexe; ?>">
+                value="<?php echo htmlentities($sexe); ?>">
     </label>
 
     <label>
@@ -164,7 +164,7 @@ if (isset($erreurs)) {
         <input
                 type="email"
                 name="mail"
-                value="<?php echo $mail; ?>">
+                value="<?php echo htmlentities($mail); ?>">
     </label>
 
     <label>
@@ -172,7 +172,7 @@ if (isset($erreurs)) {
         <input
                 type="text"
                 name="adresse"
-                value="<?php echo $adresse; ?>">
+                value="<?php echo htmlentities($adresse); ?>">
     </label>
 
     <label>
@@ -180,7 +180,7 @@ if (isset($erreurs)) {
         <input
                 type="text"
                 name="code_postal"
-                value="<?php echo $code_postal; ?>">
+                value="<?php echo htmlentities($code_postal); ?>">
     </label>
 
     <label>
@@ -188,7 +188,7 @@ if (isset($erreurs)) {
         <input
                 type="text"
                 name="ville"
-                value="<?php echo $ville; ?>">
+                value="<?php echo htmlentities($ville); ?>">
     </label>
 
     <label>
@@ -196,7 +196,7 @@ if (isset($erreurs)) {
         <input
                 type="number"
                 name="numero_tel"
-                value="<?php echo $numero_tel; ?>">
+                value="<?php echo htmlentities($numero_tel); ?>">
     </label>
 
     <input

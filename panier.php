@@ -33,7 +33,7 @@
                 $id = $_GET["id"];
 
                 print_r($panier);
-                echo $id . " " . $article;
+                echo htmlentities($id . " " . $article);
                 $panier[$id] = $article;
 
 
@@ -66,7 +66,7 @@
 
                     echo "<ul>";
                     foreach($panierSql as $x) {
-                        echo "<li><span class=\"aliment\">" . $x["titreR"] . "</span> <span class=\"supprimer\">❌</span></li>";
+                        echo htmlentities("<li><span class=\"aliment\">" . $x["titreR"] . "</span> <span class=\"supprimer\">❌</span></li>");
                     } 
                     echo "</ul>";
 
@@ -77,7 +77,7 @@
                     } else {
                         echo "<ul>";
                         foreach($panier as $aliment) {
-                            echo "<li><span class=\"aliment\">" . $aliment . "</span> <span class=\"supprimer\">❌</span></li>";
+                            echo htmlentities("<li><span class=\"aliment\">" . $aliment . "</span> <span class=\"supprimer\">❌</span></li>");
                         }
                         echo "</ul>";
                     }
@@ -101,11 +101,8 @@
             if (isset($_SESSION["connected"])) {
                 $mysqli = mysqli_connect('127.0.0.1', 'root', '', 'Utilisateurs') or die("Erreur de connexion");
                 try {
-                    echo "suppression bdd";
 
-                    echo $_SESSION["connected"]["id"];
                     viderRecettesClient($mysqli, $_SESSION["connected"]["id"]);
-                    echo $_SESSION["connected"]["id"];
 
                 } catch (Exception $e) {
                     echo "$e";

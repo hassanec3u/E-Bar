@@ -112,7 +112,7 @@ if (isset($_SESSION["connected"])) {
         <input
                 type="text"
                 name="login"
-                value="<?php echo $login; ?>">
+                value="<?php echo htmlentities($login); ?>">
     </label>
 
     <label>
@@ -120,7 +120,7 @@ if (isset($_SESSION["connected"])) {
         <input
                 type="password"
                 name="mot_de_passe"
-                value="<?php echo $mot_de_passe; ?>">
+                value="<?php echo htmlentities($mot_de_passe); ?>">
     </label>
 
     <input
