@@ -65,7 +65,6 @@ if (isset($_POST["mettreAjour"])) {
 //on les recuperes pour pouvoir les afficher plus tard
 
 
-print_r($_POST);
 ?>
 <form method="post">
     <input type="hidden" name="ancien_login" value="<?php echo $_SESSION["connected"]["login"]; ?>">
