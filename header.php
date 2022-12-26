@@ -23,7 +23,7 @@
 <header class="header">
     <nav class="nav_enTete">
         <div class="header_logo">
-            <a href="acceil.php"> <img src="res/logo.jpg" height="100px" width="150px" alt="logo bar"></a>
+            <a href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../acceil.php"> <img src="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../res/logo.jpg" height="100px" width="150px" alt="logo bar"></a>
         </div>
         <div class="header_information">
 
@@ -33,11 +33,11 @@
                     class="fa-solid fa-magnifying-glass"></i>
 
 
-            <a href="/projet_web/profil.php" onclick=redirection() id="lienCompte" class="header_information_item"><i
+            <a href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../profil.php" onclick=redirection() id="lienCompte" class="header_information_item"><i
                         class="fa-solid fa-user"></i> Compte</a>
-            <a href="/projet_web/panier.php" class="header_information_item"><i class="fa-solid fa-cart-shopping"></i>
+            <a href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../panier.php" class="header_information_item"><i class="fa-solid fa-cart-shopping"></i>
                 Panier</a>
-            <a href="/projet_web/hierarchie.php" class="header_information_item"><i
+            <a href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../hierarchie.php" class="header_information_item"><i
                         class="fa-solid fa-martini-glass-citrus"></i> Hierarchie</a>
 
         </div>

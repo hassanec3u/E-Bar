@@ -6,10 +6,11 @@
         <link rel="stylesheet" href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../css/header.css">
         <link rel="stylesheet" href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../css/footer.css">
         <link rel="stylesheet" href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../css/base.css">
+        <?php include_once "util/iconLien.php" ?>
+
     </head>
 
     <body>
-        
         <?php include_once "header.php"; ?>
 
 
