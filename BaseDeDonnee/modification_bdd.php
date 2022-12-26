@@ -149,11 +149,3 @@ function rechercher($connect, $recherche) {
 
     return $res;
 }
-
-//ajouterClient("abouKore", "abcdef", "Kore", "Aboubacar", "H", "xxx@gmail.com", "rue bazin", "54000", "nancy", "455555550");
-//mettreAJourDonnesClient("bouKore", "abcdef", "tata", "almou", "h", "ras", "ras", "ras", "ras", "ras");
-
-//$test = recupererDonnesClient("abouKore","abcdef");
-//$res = recupererInformation('abouKore','abcdef');
-
-
