@@ -189,6 +189,7 @@
 
             for (let i = 0; i < boutonAjoutPanier.length; i++) {
                 boutonAjoutPanier[i].addEventListener("click", ajouterArticlePanier);
+                alert("Vous avez ajouté un élément au panier");
             }
         </script>
 
