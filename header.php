@@ -14,7 +14,7 @@
                 document.getElementById("#result").style.border = "1px solid #A5ACB2";
             }
         }
-        xmlhttp.open("GET", "BaseDeDonnee/rechercher.php?q=" + str, true);
+        xmlhttp.open("GET", "<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../BaseDeDonnee/rechercher.php?req=" + str, true);
         xmlhttp.send(null);
     }
 

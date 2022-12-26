@@ -140,7 +140,7 @@
                 supprimer[i].addEventListener("click", (e) => {
                     let aliment = e.target.parentNode.querySelector(".aliment").innerHTML;
 
-                    fetch(`/<?php echo basename(__DIR__); ?>/panier.php?supprimer=${aliment}`, {
+                    fetch(`/<?php echo $_SERVER["SCRIPT_NAME"]; ?>/panier.php?supprimer=${aliment}`, {
                         method: "GET",
                     });
 
