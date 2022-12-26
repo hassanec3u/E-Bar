@@ -21,6 +21,7 @@
 
 
 <header class="header">
+    <h1>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH</h1>
     <nav class="nav_enTete">
         <div class="header_logo">
             <a href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../acceil.php"> <img src="<?php echo $_SERVER["SCRIPT_NAME"]; ?>/../res/logo.jpg" height="100px" width="150px" alt="logo bar"></a>

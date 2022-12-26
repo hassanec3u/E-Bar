@@ -105,6 +105,27 @@ function recupererPanier($connect, $idClient) {
     return $res;
     return false;
 }
+
+function rechercher($connect, $recherche) {
+    $recherche = "$recherche%";
+    $stmt = mysqli_prepare($connect, 'select * from Recette r where r.titreR like ?');
+    $stmt->bind_param("s", $recherche);
+    /* execute statement */
+    $stmt->execute();
+    $result = $stmt->get_result(); # all rows to array
+
+    $res = [];
+    $i = 0;
+
+    while ($data = $result->fetch_assoc())
+    {
+        $res[$i] = $data;
+        $i += 1;
+    }
+
+    return $res;
+}
+
 //ajouterClient("abouKore", "abcdef", "Kore", "Aboubacar", "H", "xxx@gmail.com", "rue bazin", "54000", "nancy", "455555550");
 //mettreAJourDonnesClient("bouKore", "abcdef", "tata", "almou", "h", "ras", "ras", "ras", "ras", "ras");
 
