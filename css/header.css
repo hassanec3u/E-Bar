@@ -1,20 +1,27 @@
-.header{
+.header {
     background-color: black;
 }
 
-.nav_enTete{
+.nav_enTete {
     margin-right: 5%;
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
 
-.header_information{
+.header_information {
     font-family: 'Kanit', sans-serif;
 
 }
-.header_information_item{
+
+.header_information_item {
     margin-left: 40px;
     color: white;
     text-decoration: none;
+}
+
+#barreRecherche {
+    width: 300px;
+    border: 2px solid ;
+    border-radius: 4px
 }

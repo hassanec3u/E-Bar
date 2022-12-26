@@ -63,6 +63,7 @@ WHERE login = ? AND mot_de_passe = ? ");
     if (mysqli_affected_rows($connect) >0 ) {
         return true;
     }
+    return false;
 }
 
 function ajouterRecette($connect, $id, $titreR) {
@@ -103,7 +104,6 @@ function recupererPanier($connect, $idClient) {
     
 
     return $res;
-    return false;
 }
 
 function rechercher($connect, $recherche) {

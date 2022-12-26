@@ -1,9 +1,8 @@
 body{
-    margin: 0px;
-    padding: 0px;
-    background: url('../res/header-background.jpg');
+    margin: 0;
+    padding: 0;
     background-size: cover;
-    background-repeat: no-repeat;
+    background: url('../res/header-background.jpg') no-repeat;
     color: white;
     font-family: 'Kanit', sans-serif;
 
