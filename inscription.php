@@ -170,13 +170,21 @@ if (isset($inscriptionReussie)) {
                 value="<?php echo htmlentities($prenom); ?>">
     </label>
 
-    <label>
-        Sexe :
-        <input
-                type="text"
-                name="sexe"
-                value="<?php echo htmlentities($sexe); ?>">
-    </label>
+    <fieldset>
+        <legend>Sexe : </legend>
+        <div>
+            <input type="radio" name="sexe" value="h">
+            <label>Homme</label>
+        </div>
+
+        <div>
+            <input type="radio" name="sexe" value="f">
+            <label>Femme</label>
+        </div>
+
+    </fieldset>
+
+    
 
     <label>
         Mail :

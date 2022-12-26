@@ -90,10 +90,19 @@ if (isset($_POST["mettreAjour"])) {
         <input type="text" name="prenom" value="">
     </label>
 
-    <label>
-        Sexe :
-        <input type="text" name="sexe" value="">
-    </label>
+    <fieldset>
+        <legend>Sexe : </legend>
+        <div>
+            <input type="radio" name="sexe" value="h">
+            <label>Homme</label>
+        </div>
+
+        <div>
+            <input type="radio" name="sexe" value="f">
+            <label>Femme</label>
+        </div>
+
+    </fieldset>
 
     <label>
         Mail :
