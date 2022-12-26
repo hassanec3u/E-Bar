@@ -161,6 +161,8 @@
 
         <script>
             function ajouterArticlePanier(event) {
+                alert("Vous avez ajouté un élément au panier");
+
                 event.preventDefault();
                 let titre = event.target.parentNode.parentNode.querySelector("h2");
 
@@ -189,7 +191,6 @@
 
             for (let i = 0; i < boutonAjoutPanier.length; i++) {
                 boutonAjoutPanier[i].addEventListener("click", ajouterArticlePanier);
-                alert("Vous avez ajouté un élément au panier");
             }
         </script>
 
