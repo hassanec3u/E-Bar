@@ -132,20 +132,19 @@
 
         <?php include_once "footer.php"; ?>
 
-
         <script>
             let supprimer = document.querySelectorAll(".supprimer");
 
             for (let i = 0; i < supprimer.length; i++) {
                 supprimer[i].addEventListener("click", (e) => {
                     let aliment = e.target.parentNode.querySelector(".aliment").innerHTML;
-
-                    fetch(`/<?php echo $_SERVER["SCRIPT_NAME"]; ?>/panier.php?supprimer=${aliment}`, {
+                    
+                    fetch(`<?php echo $_SERVER["SCRIPT_NAME"]; ?>/panier.php?supprimer=${aliment}`, {
                         method: "GET",
                     });
 
                     console.log("suppression", aliment);
-                    console.log(`ecole/panier.php?supprimer=${aliment}`)
+                    console.log(`/<?php echo $_SERVER["SCRIPT_NAME"]; ?>/panier.php?supprimer=${aliment}`)
                 });
             }
         </script>
