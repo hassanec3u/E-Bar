@@ -9,4 +9,5 @@ foreach($Recettes as $id => $recette) {
     ajouterRecette($mysqli, $id, $titre);
 }
 
+
 ?>
