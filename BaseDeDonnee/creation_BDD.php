@@ -17,28 +17,28 @@ function requete($link, $requete)
 //creation de la base Utilisateur;
 $nom_de_la_base = "Utilisateurs";
 $Sql = "
-		
 		CREATE DATABASE IF NOT EXISTS $nom_de_la_base;
 		
 		USE $nom_de_la_base;
 		
 		CREATE TABLE IF NOT EXISTS Client (
-		id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-		login VARCHAR(25) UNIQUE NOT NULL,
-		mot_de_passe varchar(25) NOT NULL,
-		nom varchar(25) ,
-		prenom varchar(25),
-		sexe varchar(1),	
-		mail varchar(255),
-		adresse varchar(50),
-		code_postale varchar(5),
-		ville varchar(25),
-		numero_tel varchar(10));
+            id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+            login VARCHAR(25) UNIQUE NOT NULL,
+            mot_de_passe varchar(25) NOT NULL,
+            nom varchar(25) ,
+            prenom varchar(25),
+            sexe varchar(1),	
+            mail varchar(255),
+            adresse varchar(50),
+            code_postale varchar(5),
+            ville varchar(25),
+            numero_tel varchar(10)
+        );
 
-        CREATE TABLE Recette (
-        id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-        titreR varchar(256));
-        
+        CREATE TABLE IF NOT EXISTS Recette (
+            id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+            titreR varchar(256)
+        );
     
         CREATE TABLE IF NOT EXISTS RecetteClient (
         idClient INT REFERENCES Client(id) ON DELETE CASCADE,
